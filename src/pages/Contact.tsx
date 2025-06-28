@@ -176,7 +176,7 @@ const Contact = () => {
                       </label>
                       <div className="flex">
                         <div className="flex items-center px-3 border-2 border-r-0 border-gray-200 rounded-l-lg bg-gray-50">
-                          <span className="text-orange-500 font-semibold">🇮🇳 +91</span>
+                          <span className="text-fixmy-orange-500 font-semibold">🇮🇳 +91</span>
                         </div>
                         <Input
                           type="tel"
@@ -257,7 +257,7 @@ const Contact = () => {
                     <Button 
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full h-12 bg-gradient-to-r from-teal-600 to-teal-700 hover:from-teal-700 hover:to-teal-800 text-white font-semibold rounded-lg hover-glow"
+                      className="w-full h-12 bg-gradient-to-r from-fixmy-orange-600 to-fixmy-orange-500 hover:from-fixmy-orange-700 hover:to-fixmy-orange-600 text-white font-semibold rounded-lg hover-glow"
                     >
                       {isSubmitting ? 'Sending Message...' : 'Get a Free Consultation'}
                     </Button>
@@ -388,7 +388,7 @@ const Contact = () => {
                 <AccordionItem 
                   key={index}
                   value={`item-${index}`}
-                  className="bg-white rounded-lg border-2 border-gray-100 shadow-md hover:shadow-lg transition-all duration-300 animate-fade-in"
+                  className="bg-white rounded-lg border-2 border-gray-100 shadow-md hover:shadow-lg transition-all duration-300 animate-fade-in overflow-hidden"
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
                   <AccordionTrigger className="px-6 py-4 text-left hover:no-underline group">
@@ -401,7 +401,7 @@ const Contact = () => {
                       </span>
                     </div>
                   </AccordionTrigger>
-                  <AccordionContent className="px-6 pb-4">
+                  <AccordionContent className="px-6 pb-4 animate-accordion-down">
                     <div className="flex items-start space-x-3">
                       <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
                       <p className="text-gray-600 leading-relaxed">{faq.answer}</p>

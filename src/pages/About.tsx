@@ -1,6 +1,7 @@
 
-import { Users, Award, Clock, Globe } from 'lucide-react';
+import { Users, Award, Clock, Globe, Star, Quote } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
 import { Link } from 'react-router-dom';
 
 const About = () => {
@@ -16,25 +17,80 @@ const About = () => {
       name: 'John Smith',
       role: 'Chief Database Architect',
       image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face',
-      description: 'Expert in database design and optimization with 15+ years of experience'
+      description: 'Expert in database design and optimization with 15+ years of experience',
+      linkedin: '#',
+      twitter: '#'
     },
     {
       name: 'Sarah Johnson',
       role: 'Cloud Migration Specialist',
       image: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=400&h=400&fit=crop&crop=face',
-      description: 'Specialized in seamless cloud migrations and infrastructure optimization'
+      description: 'Specialized in seamless cloud migrations and infrastructure optimization',
+      linkedin: '#',
+      twitter: '#'
     },
     {
       name: 'Mike Chen',
       role: 'Security Expert',
       image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face',
-      description: 'Database security specialist with advanced certifications in cybersecurity'
+      description: 'Database security specialist with advanced certifications in cybersecurity',
+      linkedin: '#',
+      twitter: '#'
     },
     {
       name: 'Lisa Rodriguez',
       role: 'Performance Analyst',
       image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop&crop=face',
-      description: 'Performance tuning expert with a track record of 10x speed improvements'
+      description: 'Performance tuning expert with a track record of 10x speed improvements',
+      linkedin: '#',
+      twitter: '#'
+    },
+    {
+      name: 'David Kumar',
+      role: 'DevOps Engineer',
+      image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop&crop=face',
+      description: 'Infrastructure automation and deployment specialist',
+      linkedin: '#',
+      twitter: '#'
+    },
+    {
+      name: 'Emma Wilson',
+      role: 'Data Analyst',
+      image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=400&fit=crop&crop=face',
+      description: 'Business intelligence and data analytics expert',
+      linkedin: '#',
+      twitter: '#'
+    }
+  ];
+
+  const testimonials = [
+    {
+      name: 'Alex Thompson',
+      role: 'CTO at TechStart Inc.',
+      image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=100&h=100&fit=crop&crop=face',
+      content: 'FixMyDB transformed our database infrastructure completely. Their expertise helped us reduce query times by 80% and improve overall system reliability.',
+      rating: 5
+    },
+    {
+      name: 'Maria Garcia',
+      role: 'Lead Developer at DataFlow',
+      image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&h=100&fit=crop&crop=face',
+      content: 'The team at FixMyDB is incredibly knowledgeable and responsive. They migrated our entire database to the cloud with zero downtime.',
+      rating: 5
+    },
+    {
+      name: 'Robert Kim',
+      role: 'Database Administrator',
+      image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=100&h=100&fit=crop&crop=face',
+      content: 'Their 24/7 support has been a game-changer for our operations. Professional, reliable, and always available when we need them.',
+      rating: 5
+    },
+    {
+      name: 'Jennifer Lee',
+      role: 'VP Engineering at ScaleUp',
+      image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=100&h=100&fit=crop&crop=face',
+      content: 'Working with FixMyDB was the best decision we made for our data infrastructure. They delivered beyond our expectations.',
+      rating: 5
     }
   ];
 
@@ -114,31 +170,97 @@ const About = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {team.map((member, index) => (
-              <div 
+              <Card 
                 key={index}
-                className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden animate-fade-in hover:-translate-y-2"
+                className="overflow-hidden hover:shadow-xl transition-all duration-300 animate-fade-in group hover:-translate-y-2"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <img 
-                  src={member.image} 
-                  alt={member.name}
-                  className="w-full h-64 object-cover"
-                />
-                <div className="p-6">
+                <div className="relative">
+                  <img 
+                    src={member.image} 
+                    alt={member.name}
+                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </div>
+                <CardContent className="p-6">
                   <h3 className="text-xl font-bold mb-2 text-gray-800">{member.name}</h3>
                   <p className="text-fixmy-orange-600 font-semibold mb-3">{member.role}</p>
-                  <p className="text-gray-600 text-sm leading-relaxed">{member.description}</p>
-                </div>
-              </div>
+                  <p className="text-gray-600 text-sm leading-relaxed mb-4">{member.description}</p>
+                  <div className="flex space-x-3">
+                    <a href={member.linkedin} className="text-gray-400 hover:text-fixmy-orange-600 transition-colors">
+                      <span className="sr-only">LinkedIn</span>
+                      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M16.338 16.338H13.67V12.16c0-.995-.017-2.277-1.387-2.277-1.39 0-1.601 1.086-1.601 2.207v4.248H8.014v-8.59h2.559v1.174h.037c.356-.675 1.227-1.387 2.526-1.387 2.703 0 3.203 1.778 3.203 4.092v4.711zM5.005 6.575a1.548 1.548 0 11-.003-3.096 1.548 1.548 0 01.003 3.096zm-1.337 9.763H6.34v-8.59H3.667v8.59zM17.668 1H2.328C1.595 1 1 1.581 1 2.298v15.403C1 18.418 1.595 19 2.328 19h15.34c.734 0 1.332-.582 1.332-1.299V2.298C19 1.581 18.402 1 17.668 1z" clipRule="evenodd" />
+                      </svg>
+                    </a>
+                    <a href={member.twitter} className="text-gray-400 hover:text-fixmy-orange-600 transition-colors">
+                      <span className="sr-only">Twitter</span>
+                      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M6.29 18.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0020 3.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.073 4.073 0 01.8 7.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 010 16.407a11.616 11.616 0 006.29 1.84" />
+                      </svg>
+                    </a>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="py-20 bg-gray-50">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold mb-4 text-gray-800 animate-fade-in">What Our Clients Say</h2>
+            <p className="text-xl text-gray-600 animate-fade-in-up">
+              Hear from the businesses we've helped transform their database infrastructure
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+            {testimonials.map((testimonial, index) => (
+              <Card 
+                key={index}
+                className="p-8 hover:shadow-xl transition-all duration-300 animate-fade-in"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                <CardContent className="p-0">
+                  <div className="flex items-center mb-4">
+                    <Quote className="w-8 h-8 text-fixmy-orange-500 mr-3" />
+                    <div className="flex">
+                      {[...Array(testimonial.rating)].map((_, i) => (
+                        <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
+                      ))}
+                    </div>
+                  </div>
+                  
+                  <p className="text-gray-600 leading-relaxed mb-6 text-lg">
+                    "{testimonial.content}"
+                  </p>
+                  
+                  <div className="flex items-center">
+                    <img 
+                      src={testimonial.image} 
+                      alt={testimonial.name}
+                      className="w-12 h-12 rounded-full mr-4"
+                    />
+                    <div>
+                      <h4 className="font-semibold text-gray-800">{testimonial.name}</h4>
+                      <p className="text-gray-500 text-sm">{testimonial.role}</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
             ))}
           </div>
         </div>
       </section>
 
       {/* Values Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-4 text-gray-800 animate-fade-in">Our Values</h2>

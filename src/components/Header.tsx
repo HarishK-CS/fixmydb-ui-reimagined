@@ -2,16 +2,19 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
+import { Menu, X } from 'lucide-react';
 
 const navigation = [
   { name: 'Home', href: '/' },
   { name: 'Services', href: '/services' },
   { name: 'About', href: '/about' },
+  { name: 'Blog', href: '/blog' },
   { name: 'Contact', href: '/contact' },
 ];
 
 export const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -22,6 +25,14 @@ export const Header = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+  };
 
   return (
     <header 
@@ -42,6 +53,7 @@ export const Header = () => {
             <span className="text-2xl font-bold gradient-text">FixMyDB</span>
           </Link>
           
+          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8 animate-fade-in">
             {navigation.map((item) => (
               <Link
@@ -61,14 +73,60 @@ export const Header = () => {
             ))}
           </div>
           
-          <div className="animate-slide-in-right">
+          {/* Desktop CTA Button */}
+          <div className="hidden md:block animate-slide-in-right">
             <Link to="/contact">
               <Button className="bg-gradient-to-r from-fixmy-orange-600 to-fixmy-orange-500 hover:from-fixmy-orange-700 hover:to-fixmy-orange-600 text-white hover-glow">
                 Get Started
               </Button>
             </Link>
           </div>
+
+          {/* Mobile Menu Button */}
+          <div className="md:hidden">
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={toggleMobileMenu}
+              className="p-2 text-gray-700 hover:text-fixmy-orange-600"
+            >
+              {isMobileMenuOpen ? (
+                <X className="h-6 w-6" />
+              ) : (
+                <Menu className="h-6 w-6" />
+              )}
+            </Button>
+          </div>
         </div>
+
+        {/* Mobile Menu */}
+        {isMobileMenuOpen && (
+          <div className="md:hidden mt-4 pb-4 animate-fade-in">
+            <div className="flex flex-col space-y-4 bg-white rounded-lg shadow-lg p-6 border border-gray-200">
+              {navigation.map((item) => (
+                <Link
+                  key={item.name}
+                  to={item.href}
+                  onClick={closeMobileMenu}
+                  className={`text-base font-medium transition-all duration-300 hover:text-fixmy-orange-600 py-2 px-3 rounded-lg hover:bg-fixmy-orange-50 ${
+                    location.pathname === item.href 
+                      ? 'text-fixmy-orange-600 bg-fixmy-orange-50' 
+                      : 'text-gray-700'
+                  }`}
+                >
+                  {item.name}
+                </Link>
+              ))}
+              <div className="pt-4 border-t border-gray-200">
+                <Link to="/contact" onClick={closeMobileMenu}>
+                  <Button className="w-full bg-gradient-to-r from-fixmy-orange-600 to-fixmy-orange-500 hover:from-fixmy-orange-700 hover:to-fixmy-orange-600 text-white">
+                    Get Started
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          </div>
+        )}
       </nav>
     </header>
   );
