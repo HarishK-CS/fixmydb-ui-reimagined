@@ -1,4 +1,6 @@
 
+import { Link } from 'react-router-dom';
+
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
 
@@ -7,12 +9,14 @@ export const Footer = () => {
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="animate-fade-in">
-            <div className="flex items-center space-x-2 mb-4">
-              <div className="w-8 h-8 bg-gradient-to-r from-db-blue-600 to-db-green-500 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-sm">F</span>
-              </div>
+            <Link to="/" className="flex items-center space-x-3 mb-4">
+              <img 
+                src="/lovable-uploads/246fa17d-693d-4291-8b0f-cc6dfc9159e8.png" 
+                alt="FixMyDB Logo" 
+                className="w-8 h-8 object-contain"
+              />
               <span className="text-2xl font-bold">FixMyDB</span>
-            </div>
+            </Link>
             <p className="text-gray-400 leading-relaxed">
               Professional database management solutions that scale with your business. 
               Reliable, secure, and optimized for performance.
@@ -22,20 +26,20 @@ export const Footer = () => {
           <div className="animate-fade-in" style={{ animationDelay: '0.1s' }}>
             <h3 className="text-lg font-semibold mb-4">Services</h3>
             <ul className="space-y-2 text-gray-400">
-              <li><a href="#services" className="hover:text-db-blue-400 transition-colors">Database Optimization</a></li>
-              <li><a href="#services" className="hover:text-db-blue-400 transition-colors">Cloud Migration</a></li>
-              <li><a href="#services" className="hover:text-db-blue-400 transition-colors">Security Auditing</a></li>
-              <li><a href="#services" className="hover:text-db-blue-400 transition-colors">24/7 Support</a></li>
+              <li><Link to="/services" className="hover:text-fixmy-orange-400 transition-colors">Database Optimization</Link></li>
+              <li><Link to="/services" className="hover:text-fixmy-orange-400 transition-colors">Cloud Migration</Link></li>
+              <li><Link to="/services" className="hover:text-fixmy-orange-400 transition-colors">Security Auditing</Link></li>
+              <li><Link to="/services" className="hover:text-fixmy-orange-400 transition-colors">24/7 Support</Link></li>
             </ul>
           </div>
 
           <div className="animate-fade-in" style={{ animationDelay: '0.2s' }}>
             <h3 className="text-lg font-semibold mb-4">Company</h3>
             <ul className="space-y-2 text-gray-400">
-              <li><a href="#about" className="hover:text-db-blue-400 transition-colors">About Us</a></li>
-              <li><a href="#contact" className="hover:text-db-blue-400 transition-colors">Contact</a></li>
-              <li><a href="#" className="hover:text-db-blue-400 transition-colors">Privacy Policy</a></li>
-              <li><a href="#" className="hover:text-db-blue-400 transition-colors">Terms of Service</a></li>
+              <li><Link to="/about" className="hover:text-fixmy-orange-400 transition-colors">About Us</Link></li>
+              <li><Link to="/contact" className="hover:text-fixmy-orange-400 transition-colors">Contact</Link></li>
+              <li><a href="#" className="hover:text-fixmy-orange-400 transition-colors">Privacy Policy</a></li>
+              <li><a href="#" className="hover:text-fixmy-orange-400 transition-colors">Terms of Service</a></li>
             </ul>
           </div>
 

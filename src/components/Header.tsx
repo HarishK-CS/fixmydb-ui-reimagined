@@ -1,49 +1,27 @@
 
 import { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 
 const navigation = [
-  { name: 'Home', href: '#home' },
-  { name: 'Services', href: '#services' },
-  { name: 'Features', href: '#features' },
-  { name: 'About', href: '#about' },
-  { name: 'Contact', href: '#contact' },
+  { name: 'Home', href: '/' },
+  { name: 'Services', href: '/services' },
+  { name: 'About', href: '/about' },
+  { name: 'Contact', href: '/contact' },
 ];
 
 export const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState('home');
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
-      
-      // Update active section based on scroll position
-      const sections = navigation.map(item => item.href.substring(1));
-      const currentSection = sections.find(section => {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          return rect.top <= 100 && rect.bottom >= 100;
-        }
-        return false;
-      });
-      
-      if (currentSection) {
-        setActiveSection(currentSection);
-      }
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  const scrollToSection = (href: string) => {
-    const element = document.getElementById(href.substring(1));
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
 
   return (
     <header 
@@ -55,39 +33,40 @@ export const Header = () => {
     >
       <nav className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-2 animate-slide-in-left">
-            <div className="w-8 h-8 bg-gradient-to-r from-db-blue-600 to-db-green-500 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-sm">F</span>
-            </div>
+          <Link to="/" className="flex items-center space-x-3 animate-slide-in-left">
+            <img 
+              src="/lovable-uploads/246fa17d-693d-4291-8b0f-cc6dfc9159e8.png" 
+              alt="FixMyDB Logo" 
+              className="w-10 h-10 object-contain"
+            />
             <span className="text-2xl font-bold gradient-text">FixMyDB</span>
-          </div>
+          </Link>
           
           <div className="hidden md:flex items-center space-x-8 animate-fade-in">
             {navigation.map((item) => (
-              <button
+              <Link
                 key={item.name}
-                onClick={() => scrollToSection(item.href)}
-                className={`text-sm font-medium transition-all duration-300 hover:text-db-blue-600 relative ${
-                  activeSection === item.href.substring(1) 
-                    ? 'text-db-blue-600' 
+                to={item.href}
+                className={`text-sm font-medium transition-all duration-300 hover:text-fixmy-orange-600 relative ${
+                  location.pathname === item.href 
+                    ? 'text-fixmy-orange-600' 
                     : 'text-gray-700'
                 }`}
               >
                 {item.name}
-                {activeSection === item.href.substring(1) && (
-                  <div className="absolute -bottom-1 left-0 w-full h-0.5 bg-db-blue-600 animate-scale-in" />
+                {location.pathname === item.href && (
+                  <div className="absolute -bottom-1 left-0 w-full h-0.5 bg-fixmy-orange-600 animate-scale-in" />
                 )}
-              </button>
+              </Link>
             ))}
           </div>
           
           <div className="animate-slide-in-right">
-            <Button 
-              onClick={() => scrollToSection('#contact')}
-              className="bg-gradient-to-r from-db-blue-600 to-db-green-500 hover:from-db-blue-700 hover:to-db-green-600 text-white hover-glow"
-            >
-              Get Started
-            </Button>
+            <Link to="/contact">
+              <Button className="bg-gradient-to-r from-fixmy-orange-600 to-fixmy-orange-500 hover:from-fixmy-orange-700 hover:to-fixmy-orange-600 text-white hover-glow">
+                Get Started
+              </Button>
+            </Link>
           </div>
         </div>
       </nav>

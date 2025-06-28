@@ -1,24 +1,16 @@
 
-import { Header } from '@/components/Header';
-import { HeroSection } from '@/components/HeroSection';
-import { ServicesSection } from '@/components/ServicesSection';
-import { FeaturesSection } from '@/components/FeaturesSection';
-import { AboutSection } from '@/components/AboutSection';
-import { ContactSection } from '@/components/ContactSection';
-import { Footer } from '@/components/Footer';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Index = () => {
-  return (
-    <div className="min-h-screen">
-      <Header />
-      <HeroSection />
-      <ServicesSection />
-      <FeaturesSection />
-      <AboutSection />
-      <ContactSection />
-      <Footer />
-    </div>
-  );
+  const navigate = useNavigate();
+  
+  useEffect(() => {
+    // Redirect to home page since we now have separate pages
+    navigate('/', { replace: true });
+  }, [navigate]);
+
+  return null;
 };
 
 export default Index;
