@@ -84,10 +84,10 @@ const Blog = () => {
   });
 
   return (
-    <div className="min-h-screen pt-20">
+    <div className="min-h-screen ">
       {/* Hero Section with Background Image */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 via-orange-50 to-fixmy-orange-100 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
+      <section className="py-20 bg-fixmy-orange-80 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10  ">
           <img 
             src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=1200&h=600&fit=crop" 
             alt="Database Code Background"

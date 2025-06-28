@@ -4,13 +4,13 @@ import { PHONE, SUPPORT_EMAIL } from '@/constants';
 
 const PrivacyPolicy = () => {
   return (
-    <div className="min-h-screen pt-20">
+    <div className="min-h-screen ">
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 via-orange-50 to-fixmy-orange-100">
+      <section className="py-20 bg-gradient-to-br pt-20 from-gray-50 via-orange-50 to-fixmy-orange-100">
         <div className="container mx-auto px-6 text-center">
           <div className="flex justify-center mb-6">
             <svg className="w-16 h-16 text-fixmy-orange-600" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/>
+              <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z" />
             </svg>
           </div>
           <h1 className="text-5xl md:text-6xl font-bold mb-6 gradient-text animate-fade-in">

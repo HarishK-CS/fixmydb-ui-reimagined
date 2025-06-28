@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 import chandu from '../assets/chandu.png';
 import madhu from '../assets/madhu.png';
 import sai from '../assets/sai.jpg';
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 
 const About = () => {
@@ -73,10 +75,22 @@ const About = () => {
     }
   ];
 
+  const location = useLocation();
+  useEffect(() => {
+    if (location.hash === '#whatourclientsay') {
+      setTimeout(() => {
+        const el = document.getElementById('whatourclientsay');
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 300); // longer delay to ensure render
+    }
+  }, [location.hash]);
+
   return (
-    <div className="min-h-screen pt-20">
+    <div className="min-h-screen ">
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 via-orange-50 to-fixmy-orange-100">
+      <section className="py-20 mt-10 bg-gradient-to-br from-gray-50 via-orange-50 to-fixmy-orange-100">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-5xl md:text-6xl font-bold mb-6 gradient-text animate-fade-in">
@@ -96,18 +110,18 @@ const About = () => {
             <div className="animate-slide-in-left">
               <h2 className="text-4xl font-bold mb-6 text-gray-800">Our Mission</h2>
               <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                At FixMyDB, we believe that every business deserves a robust, secure, and high-performing database infrastructure. 
+                At FixMyDB, we believe that every business deserves a robust, secure, and high-performing database infrastructure.
                 Our mission is to eliminate the complexity and frustration that comes with database management, allowing you to focus on what matters most - growing your business.
               </p>
               <p className="text-lg text-gray-600 leading-relaxed">
-                We combine cutting-edge technology with deep expertise to deliver solutions that not only solve today's challenges 
+                We combine cutting-edge technology with deep expertise to deliver solutions that not only solve today's challenges
                 but also prepare your infrastructure for tomorrow's opportunities.
               </p>
             </div>
             <div className="animate-slide-in-right">
-              <img 
-                src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=400&fit=crop" 
-                alt="Team collaboration" 
+              <img
+                src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=400&fit=crop"
+                alt="Team collaboration"
                 className="rounded-2xl shadow-xl"
               />
             </div>
@@ -122,10 +136,10 @@ const About = () => {
             <h2 className="text-4xl font-bold mb-4 animate-fade-in">Our Impact</h2>
             <p className="text-xl animate-fade-in-up">Numbers that speak to our commitment and expertise</p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
-              <div 
+              <div
                 key={index}
                 className="text-center animate-scale-in"
                 style={{ animationDelay: `${index * 0.1}s` }}
@@ -151,14 +165,14 @@ const About = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {team.map((member, index) => (
-              <Card 
+              <Card
                 key={index}
                 className="overflow-hidden hover:shadow-xl transition-all duration-300 animate-fade-in group hover:-translate-y-2"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div className="flex flex-col items-center pt-6 pb-0">
-                  <img 
-                    src={member.image} 
+                  <img
+                    src={member.image}
                     alt={member.name}
                     className="w-40 h-40 object-cover rounded-full mx-auto mb-4 shadow-lg border-4 border-white"
                   />
@@ -189,7 +203,7 @@ const About = () => {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gray-50" id="whatourclientsay">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-4 text-gray-800 animate-fade-in">What Our Clients Say</h2>
@@ -200,7 +214,7 @@ const About = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
             {testimonials.map((testimonial, index) => (
-              <Card 
+              <Card
                 key={index}
                 className="p-8 hover:shadow-xl transition-all duration-300 animate-fade-in"
                 style={{ animationDelay: `${index * 0.1}s` }}
@@ -214,14 +228,14 @@ const About = () => {
                       ))}
                     </div>
                   </div>
-                  
+
                   <p className="text-gray-600 leading-relaxed mb-6 text-lg">
                     "{testimonial.content}"
                   </p>
-                  
+
                   <div className="flex items-center">
-                    <img 
-                      src={testimonial.image} 
+                    <img
+                      src={testimonial.image}
                       alt={testimonial.name}
                       className="w-12 h-12 rounded-full mr-4"
                     />
@@ -263,7 +277,7 @@ const About = () => {
                 color: 'from-orange-500 to-fixmy-orange-500'
               }
             ].map((value, index) => (
-              <div 
+              <div
                 key={index}
                 className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 animate-fade-in"
                 style={{ animationDelay: `${index * 0.1}s` }}
@@ -289,7 +303,7 @@ const About = () => {
             Let's discuss how we can help transform your database infrastructure
           </p>
           <Link to="/contact">
-            <Button 
+            <Button
               size="lg"
               className="bg-white text-fixmy-orange-600 hover:bg-gray-100 px-8 py-4 text-lg font-semibold hover-glow"
             >

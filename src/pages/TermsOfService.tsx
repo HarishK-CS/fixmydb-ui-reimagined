@@ -3,13 +3,13 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 const TermsOfService = () => {
   return (
-    <div className="min-h-screen pt-20">
+    <div className="min-h-screen ">
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 via-orange-50 to-fixmy-orange-100">
+      <section className="py-20 bg-gradient-to-br pt-20 from-gray-50 via-orange-50 to-fixmy-orange-100">
         <div className="container mx-auto px-6 text-center">
           <div className="flex justify-center mb-6">
             <svg className="w-16 h-16 text-fixmy-orange-600" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
           </div>
           <h1 className="text-5xl md:text-6xl font-bold mb-6 gradient-text animate-fade-in">

@@ -29,6 +29,7 @@ const Contact = () => {
     }
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errors, setErrors] = useState<{ database?: string; contactPreference?: string }>({});
   const { toast } = useToast();
 
   // Set default country code on mount
@@ -39,11 +40,30 @@ const Contact = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setErrors({});
+
+    // Validation
+    const newErrors: { database?: string; contactPreference?: string } = {};
+    if (!formData.database) {
+      newErrors.database = 'Please select a database.';
+    }
+    const hasContactPref = Object.values(formData.contactPreference).some(Boolean);
+    if (!hasContactPref) {
+      newErrors.contactPreference = 'Please select at least one preferred contact option.';
+    }
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      setIsSubmitting(false);
+      return;
+    }
+
+    // Log submitted data
+    console.log('Submitted Contact Form Data:', formData);
 
     try {
       const result = await emailjs.send(
-        'service_fixmydb', // Replace with your EmailJS service ID
-        'template_contact', // Replace with your EmailJS template ID
+        'service_fixmydb',
+        'template_contact',
         {
           from_name: formData.name,
           from_email: formData.email,
@@ -55,14 +75,12 @@ const Contact = () => {
             .map(([key, _]) => key)
             .join(', ')
         },
-        'pk_fixmydb_public' // Replace with your EmailJS public key
+        'pk_fixmydb_public'
       );
-
       toast({
         title: "Message Sent Successfully!",
         description: "Thank you for contacting us. We'll get back to you within 24 hours.",
       });
-
       setFormData({
         name: '',
         email: '',
@@ -82,7 +100,6 @@ const Contact = () => {
         description: "We've received your inquiry and will respond within 24 hours.",
         variant: "default"
       });
-      
       setFormData({
         name: '',
         email: '',
@@ -118,12 +135,12 @@ const Contact = () => {
   };
 
   return (
-    <div className="min-h-screen pt-20">
+    <div className="min-h-screen">
       {/* Hero Section with Background */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 via-orange-50 to-fixmy-orange-100 relative overflow-hidden">
+      <section className="py-20 mt-10 bg-fixmy-orange-50 relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
-          <img 
-            src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1200&h=600&fit=crop" 
+          <img
+            src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1200&h=600&fit=crop"
             alt="Team Collaboration Background"
             className="w-full h-full object-cover"
           />
@@ -131,7 +148,7 @@ const Contact = () => {
         <div className="container mx-auto px-6 text-center relative z-10">
           <div className="flex justify-center mb-6">
             <svg className="w-16 h-16 text-fixmy-orange-600" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+              <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
             </svg>
           </div>
           <h1 className="text-5xl md:text-6xl font-bold mb-6 gradient-text animate-fade-in">
@@ -176,7 +193,7 @@ const Contact = () => {
                         placeholder="First name"
                       />
                     </div>
-                    
+
                     <div>
                       <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
                         Company Email ID *
@@ -192,10 +209,10 @@ const Contact = () => {
                         placeholder="you@company.com"
                       />
                     </div>
-                    
+
                     <div>
                       <label htmlFor="phone" className="block text-sm font-semibold text-gray-700 mb-2">
-                        Mobile No. *
+                        Mobile No. <span className="text-gray-400">(Optional)</span>
                       </label>
                       <ReactPhoneInput
                         country={'in'}
@@ -203,7 +220,7 @@ const Contact = () => {
                         onChange={phone => setFormData({ ...formData, phone })}
                         inputProps={{
                           name: 'phone',
-                          required: true,
+                          required: false,
                           autoFocus: false,
                           className: 'flex-1 h-12 border-2 border-gray-200 focus:border-fixmy-orange-500 transition-colors rounded-lg',
                           id: 'phone',
@@ -215,12 +232,12 @@ const Contact = () => {
                         masks={{ in: '(..) .....' }}
                       />
                     </div>
-                    
+
                     <div>
                       <label htmlFor="database" className="block text-sm font-semibold text-gray-700 mb-2">
                         Select Database *
                       </label>
-                      <Select value={formData.database} onValueChange={(value) => setFormData({...formData, database: value})}>
+                      <Select value={formData.database} onValueChange={(value) => setFormData({ ...formData, database: value })}>
                         <SelectTrigger className="h-12 border-2 border-gray-200 focus:border-fixmy-orange-500 transition-colors rounded-lg">
                           <SelectValue placeholder="Choose any one option" />
                         </SelectTrigger>
@@ -234,8 +251,9 @@ const Contact = () => {
                           <SelectItem value="other">Other</SelectItem>
                         </SelectContent>
                       </Select>
+                      {errors.database && <p className="text-red-500 text-xs mt-1">{errors.database}</p>}
                     </div>
-                    
+
                     <div>
                       <label htmlFor="message" className="block text-sm font-semibold text-gray-700 mb-2">
                         Message *
@@ -251,10 +269,10 @@ const Contact = () => {
                         placeholder="Tell us about your database challenge"
                       />
                     </div>
-                    
+
                     <div>
                       <label className="block text-sm font-semibold text-gray-700 mb-3">
-                        Select your preferred contact Option
+                        Select your preferred contact Option *
                       </label>
                       <div className="flex gap-6">
                         {[
@@ -278,9 +296,10 @@ const Contact = () => {
                           </div>
                         ))}
                       </div>
+                      {errors.contactPreference && <p className="text-red-500 text-xs mt-1">{errors.contactPreference}</p>}
                     </div>
-                    
-                    <Button 
+
+                    <Button
                       type="submit"
                       disabled={isSubmitting}
                       className="w-full h-12 bg-gradient-to-r from-fixmy-orange-600 to-fixmy-orange-500 hover:from-fixmy-orange-700 hover:to-fixmy-orange-600 text-white font-semibold rounded-lg hover-glow"
@@ -294,14 +313,14 @@ const Contact = () => {
 
             {/* Contact Information */}
             <div className="animate-slide-in-right">
-         
-              
-              <h2 className="text-3xl font-bold mb-6 text-gray-800">Get In Touch</h2>
-              <p className="text-gray-600 mb-8 leading-relaxed">
+
+
+              <h2 className="text-3xl font-bold mb-3 text-gray-800">Get In Touch</h2>
+              <p className="text-gray-600 mb-4 leading-relaxed">
                 We're here to help you optimize your database infrastructure. Reach out to us through any of the following channels.
               </p>
 
-              <div className="space-y-6">
+              <div className="space-y-1">
                 {[
                   {
                     icon: Mail,
@@ -328,7 +347,7 @@ const Contact = () => {
                     color: 'from-purple-500 to-purple-600'
                   }
                 ].map((contact, index) => (
-                  <div 
+                  <div
                     key={index}
                     className="flex items-start space-x-4 animate-fade-in p-4 rounded-lg hover:bg-gray-50 transition-colors"
                     style={{ animationDelay: `${index * 0.1}s` }}
@@ -347,7 +366,7 @@ const Contact = () => {
               </div>
 
               {/* Enhanced Stats Card (no Lottie) */}
-              <div className="mt-16 p-8 bg-gradient-to-br from-fixmy-orange-50 to-orange-100 rounded-2xl shadow-lg">
+              <div className="mt-8 p-8 bg-gradient-to-br from-fixmy-orange-50 to-orange-100 rounded-2xl shadow-lg">
                 <h3 className="font-bold text-gray-800 mb-6 text-center text-xl">Why Choose FixMyDB?</h3>
                 <div className="grid grid-cols-2 gap-6">
                   {[
@@ -365,96 +384,6 @@ const Contact = () => {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Enhanced FAQ Section */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 to-fixmy-orange-50 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-5">
-          <img 
-            src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&h=600&fit=crop" 
-            alt="Circuit Board Background"
-            className="w-full h-full object-cover"
-          />
-        </div>
-        <div className="container mx-auto px-6 relative z-10">
-          <div className="text-center mb-16">
-            <div className="flex justify-center mb-6">
-              <svg className="w-12 h-12 text-fixmy-orange-600" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/>
-              </svg>
-            </div>
-            <h2 className="text-4xl font-bold mb-4 text-gray-800 animate-fade-in">
-              Frequently Asked Questions
-            </h2>
-            <p className="text-xl text-gray-600 animate-fade-in-up">
-              Quick answers to common questions about our services
-            </p>
-          </div>
-
-          <div className="max-w-4xl mx-auto">
-            <Accordion type="single" collapsible className="space-y-4">
-              {[
-                {
-                  question: "How quickly can you start working on my database project?",
-                  answer: "We can typically begin assessment within 24-48 hours after initial consultation. For urgent issues, we offer emergency response services with immediate team deployment."
-                },
-                {
-                  question: "Do you work with all database systems?",
-                  answer: "Yes, we have expertise in MySQL, PostgreSQL, MongoDB, Oracle, SQL Server, Redis, Cassandra, and most other major database systems. Our team includes certified professionals for each platform."
-                },
-                {
-                  question: "What's included in your 24/7 support?",
-                  answer: "Our 24/7 support includes continuous monitoring, emergency response, performance optimization, backup management, security patches, and direct access to our expert team via phone, email, or chat."
-                },
-                {
-                  question: "How do you ensure data security during projects?",
-                  answer: "We follow strict security protocols including encrypted connections, VPN access, signed NDAs, SOC 2 compliance, and regular security audits. All our staff are security-certified professionals with background checks."
-                },
-                {
-                  question: "What is your pricing model?",
-                  answer: "We offer flexible pricing including hourly consulting, monthly retainers, and project-based pricing. We provide free initial consultation and detailed cost estimates before starting any work."
-                },
-                {
-                  question: "Can you help with database migration?",
-                  answer: "Absolutely! We specialize in database migrations including cloud migrations (AWS, Azure, GCP), cross-platform migrations, and version upgrades with zero downtime strategies."
-                }
-              ].map((faq, index) => (
-                <AccordionItem 
-                  key={index}
-                  value={`item-${index}`}
-                  className="bg-white rounded-xl border-2 border-gray-100 shadow-lg hover:shadow-xl transition-all duration-300 animate-fade-in overflow-hidden"
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                >
-                  <AccordionTrigger className="px-8 py-6 text-left hover:no-underline group">
-                    <div className="flex items-center space-x-4">
-                      <div className="w-10 h-10 bg-gradient-to-r from-fixmy-orange-500 to-fixmy-orange-600 rounded-full flex items-center justify-center text-white font-bold text-sm group-hover:scale-110 transition-transform shadow-lg">
-                        {index + 1}
-                      </div>
-                      <span className="font-semibold text-gray-800 group-hover:text-fixmy-orange-600 transition-colors text-lg">
-                        {faq.question}
-                      </span>
-                    </div>
-                  </AccordionTrigger>
-                  <AccordionContent className="px-8 pb-6 animate-accordion-down">
-                    <div className="flex items-start space-x-4 ml-14">
-                      <CheckCircle className="w-6 h-6 text-green-500 mt-0.5 flex-shrink-0" />
-                      <p className="text-gray-600 leading-relaxed text-base">{faq.answer}</p>
-                    </div>
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </div>
-
-          <div className="text-center mt-12">
-            <p className="text-gray-600 mb-4">Still have questions?</p>
-            <Button 
-              className="bg-gradient-to-r from-fixmy-orange-600 to-fixmy-orange-500 hover:from-fixmy-orange-700 hover:to-fixmy-orange-600 text-white hover-glow px-8 py-3"
-            >
-              Contact Our Experts
-            </Button>
           </div>
         </div>
       </section>

@@ -50,10 +50,10 @@ const Services = () => {
   ];
 
   return (
-    <div className="min-h-screen pt-20">
+    <div className="min-h-screen ">
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 via-orange-50 to-fixmy-orange-100">
-        <div className="container mx-auto px-6 text-center">
+      <section className="py-20  bg-gradient-to-br from-gray-50 via-orange-50 to-fixmy-orange-100">
+        <div className="container mx-auto mt-10 px-6 text-center">
           <h1 className="text-5xl md:text-6xl font-bold mb-6 gradient-text animate-fade-in">
             Our Services
           </h1>
