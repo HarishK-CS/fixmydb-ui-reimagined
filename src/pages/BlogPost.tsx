@@ -1,4 +1,3 @@
-
 import { useParams, Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -113,6 +112,90 @@ const BlogPost = () => {
       category: 'Database Comparison',
       image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=400&fit=crop',
       readTime: '12 min read'
+    },
+    {
+      id: 3,
+      title: 'Mastering Database Backups: Strategies for Zero Data Loss',
+      content: `
+        <h2>Why Backups Matter</h2>
+        <p>Backups are your last line of defense against data loss. Learn the best strategies for full, incremental, and differential backups, and how to automate them for peace of mind.</p>
+        <ul>
+          <li>Full vs Incremental vs Differential</li>
+          <li>Automated backup scheduling</li>
+          <li>Testing your backups</li>
+          <li>Cloud backup solutions</li>
+        </ul>
+        <h2>Conclusion</h2>
+        <p>With the right backup strategy, you can recover from any disaster quickly and confidently.</p>
+      `,
+      author: 'Priya Patel',
+      date: '2024-01-10',
+      category: 'Backup & Recovery',
+      image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&h=400&fit=crop',
+      readTime: '7 min read'
+    },
+    {
+      id: 4,
+      title: 'Scaling Databases: Sharding vs Replication',
+      content: `
+        <h2>Scaling Approaches</h2>
+        <p>As your data grows, scaling becomes essential. This post explores sharding and replication, their pros and cons, and when to use each.</p>
+        <ul>
+          <li>Horizontal vs Vertical scaling</li>
+          <li>Sharding architectures</li>
+          <li>Replication strategies</li>
+          <li>Consistency and availability</li>
+        </ul>
+        <h2>Conclusion</h2>
+        <p>Choosing the right scaling approach depends on your workload and business needs.</p>
+      `,
+      author: 'David Lee',
+      date: '2024-01-08',
+      category: 'Scaling',
+      image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=800&h=400&fit=crop',
+      readTime: '10 min read'
+    },
+    {
+      id: 5,
+      title: 'Database Security Essentials: Protecting Your Data',
+      content: `
+        <h2>Security Fundamentals</h2>
+        <p>Protecting your database is critical. This article covers encryption, access controls, and monitoring for threats.</p>
+        <ul>
+          <li>Data encryption at rest and in transit</li>
+          <li>User roles and permissions</li>
+          <li>Audit logging</li>
+          <li>Vulnerability scanning</li>
+        </ul>
+        <h2>Conclusion</h2>
+        <p>Implementing these security measures will help safeguard your data from breaches and attacks.</p>
+      `,
+      author: 'Amit Sharma',
+      date: '2024-01-05',
+      category: 'Security',
+      image: 'https://images.unsplash.com/photo-1465101046530-73398c7f28ca?w=800&h=400&fit=crop',
+      readTime: '9 min read'
+    },
+    {
+      id: 6,
+      title: 'NoSQL vs SQL: When to Choose Which?',
+      content: `
+        <h2>Choosing the Right Database Model</h2>
+        <p>SQL and NoSQL databases each have their strengths. This post helps you decide which is best for your project.</p>
+        <ul>
+          <li>Relational vs non-relational data</li>
+          <li>Scalability and flexibility</li>
+          <li>Use cases for each</li>
+          <li>Migration considerations</li>
+        </ul>
+        <h2>Conclusion</h2>
+        <p>Understand your data and requirements to make the best choice between SQL and NoSQL.</p>
+      `,
+      author: 'Emily Chen',
+      date: '2024-01-02',
+      category: 'Database Comparison',
+      image: 'https://images.unsplash.com/photo-1464983953574-0892a716854b?w=800&h=400&fit=crop',
+      readTime: '11 min read'
     }
   ];
 
@@ -209,7 +292,15 @@ const BlogPost = () => {
             <h3 className="text-2xl font-bold mb-6">Related Posts</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {blogPosts.filter(p => p.id !== post.id).slice(0, 2).map((relatedPost) => (
-                <Card key={relatedPost.id} className="overflow-hidden hover:shadow-lg transition-shadow">
+                <Card
+                  key={relatedPost.id}
+                  className="overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group hover:scale-[1.02]"
+                  onClick={() => window.location.href = `/blog/${relatedPost.id}`}
+                  tabIndex={0}
+                  onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') window.location.href = `/blog/${relatedPost.id}`; }}
+                  role="button"
+                  aria-label={`Read blog post: ${relatedPost.title}`}
+                >
                   <img 
                     src={relatedPost.image} 
                     alt={relatedPost.title}
@@ -217,15 +308,13 @@ const BlogPost = () => {
                   />
                   <CardContent className="p-6">
                     <Badge className="bg-fixmy-orange-600 mb-2">{relatedPost.category}</Badge>
-                    <h4 className="font-bold text-lg mb-2">{relatedPost.title}</h4>
+                    <h4 className="font-bold text-lg mb-2 group-hover:text-fixmy-orange-600 transition-colors">{relatedPost.title}</h4>
                     <div className="flex items-center text-sm text-gray-600 mb-4">
                       <span>{relatedPost.author}</span>
                       <span className="mx-2">•</span>
                       <span>{relatedPost.readTime}</span>
                     </div>
-                    <Link to={`/blog/${relatedPost.id}`}>
-                      <Button variant="outline" size="sm">Read More</Button>
-                    </Link>
+                    <Button variant="outline" size="sm">Read More</Button>
                   </CardContent>
                 </Card>
               ))}

@@ -1,14 +1,14 @@
-
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Search, Calendar, User, ArrowRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Blog = () => {
   const [searchTerm, setSearchTerm] = useState('');
+  const navigate = useNavigate();
 
   const blogPosts = [
     {
@@ -152,8 +152,13 @@ const Blog = () => {
             {filteredPosts.map((post, index) => (
               <Card 
                 key={post.id}
-                className="overflow-hidden hover:shadow-xl transition-all duration-300 animate-fade-in group hover:-translate-y-2"
+                className="overflow-hidden hover:shadow-xl transition-all duration-300 animate-fade-in group hover:-translate-y-2 cursor-pointer"
                 style={{ animationDelay: `${index * 0.1}s` }}
+                onClick={() => navigate(`/blog/${post.id}`)}
+                tabIndex={0}
+                onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') navigate(`/blog/${post.id}`); }}
+                role="button"
+                aria-label={`Read blog post: ${post.title}`}
               >
                 <div className="relative overflow-hidden">
                   <img 
@@ -174,7 +179,6 @@ const Blog = () => {
                   <p className="text-gray-600 text-sm leading-relaxed">
                     {post.excerpt}
                   </p>
-                  
                   <div className="flex items-center justify-between text-sm text-gray-500">
                     <div className="flex items-center space-x-2">
                       <User className="w-4 h-4" />
@@ -185,16 +189,13 @@ const Blog = () => {
                       <span>{post.date}</span>
                     </div>
                   </div>
-                  
                   <div className="flex items-center justify-between pt-4">
                     <span className="text-sm text-fixmy-orange-600 font-medium">
                       {post.readTime}
                     </span>
-                    <Link to={`/blog/${post.id}`}>
-                      <Button variant="ghost" className="text-fixmy-orange-600 hover:text-fixmy-orange-700 hover:bg-fixmy-orange-50 p-0">
-                        Read More <ArrowRight className="ml-2 w-4 h-4" />
-                      </Button>
-                    </Link>
+                    <Button variant="ghost" className="text-fixmy-orange-600 hover:text-fixmy-orange-700 hover:bg-fixmy-orange-50 p-0">
+                      Read More <ArrowRight className="ml-2 w-4 h-4" />
+                    </Button>
                   </div>
                 </CardContent>
               </Card>
