@@ -181,7 +181,7 @@ const Contact = () => {
                 <h3 className="font-bold text-gray-800 mb-4">Why Choose Us?</h3>
                 <div className="grid grid-cols-2 gap-4">
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-fixmy-orange-600">< 24hrs</div>
+                    <div className="text-2xl font-bold text-fixmy-orange-600">24hrs</div>
                     <div className="text-sm text-gray-600">Response Time</div>
                   </div>
                   <div className="text-center">
