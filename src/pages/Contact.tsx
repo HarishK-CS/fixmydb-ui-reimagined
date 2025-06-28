@@ -1,5 +1,4 @@
-
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -9,16 +8,18 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Mail, Phone, MapPin, Clock, CheckCircle, Shield, Award, Users, Zap } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
-import PhoneInput from 'react-phone-number-input';
-import 'react-phone-number-input/style.css';
 import emailjs from '@emailjs/browser';
 import { Link } from 'react-router-dom';
+import { COMPANY_NAME, SUPPORT_EMAIL, PHONE, ADDRESS, WHATSAPP, WEBSITE, SUPPORT_HOURS } from '../constants';
+import { parsePhoneNumberFromString } from 'libphonenumber-js';
+import ReactPhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/style.css';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    phone: '',
+    phone: '', // Start empty, will set default below
     database: '',
     message: '',
     contactPreference: {
@@ -29,6 +30,11 @@ const Contact = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
+
+  // Set default country code on mount
+  useEffect(() => {
+    setFormData((prev) => ({ ...prev, phone: '+91' }));
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -60,7 +66,7 @@ const Contact = () => {
       setFormData({
         name: '',
         email: '',
-        phone: '',
+        phone: '+91',
         database: '',
         message: '',
         contactPreference: {
@@ -80,7 +86,7 @@ const Contact = () => {
       setFormData({
         name: '',
         email: '',
-        phone: '',
+        phone: '+91',
         database: '',
         message: '',
         contactPreference: {
@@ -143,7 +149,7 @@ const Contact = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             {/* Contact Form */}
             <div className="animate-slide-in-left">
-              <Card className="border-2 border-gray-100 shadow-2xl hover:shadow-3xl transition-all duration-300 overflow-hidden">
+              <Card className="border-2 border-gray-100 shadow-2xl hover:shadow-3xl transition-all duration-300 overflow-hidden min-h-[600px] flex flex-col justify-center">
                 <div className="bg-gradient-to-r from-fixmy-orange-600 to-fixmy-orange-500 p-1">
                   <CardHeader className="bg-white rounded-t-lg m-1">
                     <CardTitle className="text-2xl font-bold text-gray-800 flex items-center">
@@ -153,7 +159,7 @@ const Contact = () => {
                     <p className="text-gray-600">Fill out the form below and our team will get back to you within 24 hours.</p>
                   </CardHeader>
                 </div>
-                <CardContent className="p-8">
+                <CardContent className="p-8 py-10">
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div>
                       <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2">
@@ -191,13 +197,22 @@ const Contact = () => {
                       <label htmlFor="phone" className="block text-sm font-semibold text-gray-700 mb-2">
                         Mobile No. *
                       </label>
-                      <PhoneInput
-                        international
-                        defaultCountry="US"
+                      <ReactPhoneInput
+                        country={'in'}
                         value={formData.phone}
-                        onChange={(value) => setFormData({...formData, phone: value || ''})}
-                        className="phone-input h-12 border-2 border-gray-200 focus:border-fixmy-orange-500 transition-colors rounded-lg"
-                        placeholder="Enter phone number"
+                        onChange={phone => setFormData({ ...formData, phone })}
+                        inputProps={{
+                          name: 'phone',
+                          required: true,
+                          autoFocus: false,
+                          className: 'flex-1 h-12 border-2 border-gray-200 focus:border-fixmy-orange-500 transition-colors rounded-lg',
+                          id: 'phone',
+                          placeholder: 'Enter phone number',
+                        }}
+                        enableSearch
+                        inputStyle={{ width: '100%' }}
+                        specialLabel=""
+                        masks={{ in: '(..) .....' }}
                       />
                     </div>
                     
@@ -279,13 +294,7 @@ const Contact = () => {
 
             {/* Contact Information */}
             <div className="animate-slide-in-right">
-              <div className="mb-8">
-                <img 
-                  src="https://images.unsplash.com/photo-1605810230434-7631ac76ec81?w=600&h=300&fit=crop" 
-                  alt="Database Team"
-                  className="w-full h-64 object-cover rounded-2xl shadow-lg"
-                />
-              </div>
+         
               
               <h2 className="text-3xl font-bold mb-6 text-gray-800">Get In Touch</h2>
               <p className="text-gray-600 mb-8 leading-relaxed">
@@ -297,13 +306,13 @@ const Contact = () => {
                   {
                     icon: Mail,
                     title: 'Email Us',
-                    details: ['hello@fixmydb.com', 'support@fixmydb.com'],
+                    details: [SUPPORT_EMAIL],
                     color: 'from-fixmy-orange-500 to-fixmy-orange-600'
                   },
                   {
                     icon: Phone,
                     title: 'Call Us',
-                    details: ['+1 (555) 123-4567', '+1 (555) 987-6543'],
+                    details: [PHONE],
                     color: 'from-blue-500 to-blue-600'
                   },
                   {
@@ -337,8 +346,8 @@ const Contact = () => {
                 ))}
               </div>
 
-              {/* Enhanced Stats Card */}
-              <div className="mt-12 p-8 bg-gradient-to-br from-fixmy-orange-50 to-orange-100 rounded-2xl shadow-lg">
+              {/* Enhanced Stats Card (no Lottie) */}
+              <div className="mt-16 p-8 bg-gradient-to-br from-fixmy-orange-50 to-orange-100 rounded-2xl shadow-lg">
                 <h3 className="font-bold text-gray-800 mb-6 text-center text-xl">Why Choose FixMyDB?</h3>
                 <div className="grid grid-cols-2 gap-6">
                   {[

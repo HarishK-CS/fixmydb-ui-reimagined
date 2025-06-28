@@ -1,5 +1,6 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { PHONE, SUPPORT_EMAIL } from '@/constants';
 
 const PrivacyPolicy = () => {
   return (
@@ -89,8 +90,8 @@ const PrivacyPolicy = () => {
               <CardContent className="prose max-w-none">
                 <p>If you have any questions about this Privacy Policy, please contact us at:</p>
                 <ul>
-                  <li>Email: privacy@fixmydb.com</li>
-                  <li>Phone: +1 (555) 123-4567</li>
+                  <li>Email: {SUPPORT_EMAIL}</li>
+                  <li>Phone: {PHONE}</li>
                   <li>Address: 123 Database Street, Tech City, TC 12345</li>
                 </ul>
               </CardContent>

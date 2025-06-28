@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
+import { PHONE, SUPPORT_EMAIL } from '@/constants';
 
 export const ContactSection = () => {
   const [formData, setFormData] = useState({
@@ -142,7 +143,7 @@ export const ContactSection = () => {
                     </div>
                     <div>
                       <div className="font-medium text-gray-800">Email</div>
-                      <div className="text-gray-600">hello@fixmydb.com</div>
+                      <div className="text-gray-600">{SUPPORT_EMAIL}</div>
                     </div>
                   </div>
                   <div className="flex items-center space-x-3">
@@ -151,7 +152,7 @@ export const ContactSection = () => {
                     </div>
                     <div>
                       <div className="font-medium text-gray-800">Phone</div>
-                      <div className="text-gray-600">+1 (555) 123-4567</div>
+                      <div className="text-gray-600">{PHONE}</div>
                     </div>
                   </div>
                   <div className="flex items-center space-x-3">

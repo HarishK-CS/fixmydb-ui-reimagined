@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Menu, X } from 'lucide-react';
+import logo from '../assets/logo.png'
 
 const navigation = [
   { name: 'Home', href: '/' },
@@ -46,7 +47,7 @@ export const Header = () => {
         <div className="flex items-center justify-between">
           <Link to="/" className="flex items-center space-x-3 animate-slide-in-left">
             <img 
-              src="/lovable-uploads/246fa17d-693d-4291-8b0f-cc6dfc9159e8.png" 
+              src={logo} 
               alt="FixMyDB Logo" 
               className="w-10 h-10 object-contain"
             />

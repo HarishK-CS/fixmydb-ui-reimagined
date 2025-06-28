@@ -1,8 +1,11 @@
-
 import { Users, Award, Clock, Globe, Star, Quote } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Link } from 'react-router-dom';
+import chandu from '../assets/chandu.png';
+import madhu from '../assets/madhu.png';
+import sai from '../assets/sai.jpg';
+
 
 const About = () => {
   const stats = [
@@ -14,53 +17,29 @@ const About = () => {
 
   const team = [
     {
-      name: 'John Smith',
-      role: 'Chief Database Architect',
-      image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face',
-      description: 'Expert in database design and optimization with 15+ years of experience',
+      name: 'Madhu Sai Vavilala',
+      role: 'Founder & Lead DBA',
+      image: madhu,
+      description: '15+ years of database expertise with specialization in MySQL optimization',
       linkedin: '#',
       twitter: '#'
     },
     {
-      name: 'Sarah Johnson',
-      role: 'Cloud Migration Specialist',
-      image: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=400&h=400&fit=crop&crop=face',
-      description: 'Specialized in seamless cloud migrations and infrastructure optimization',
+      name: 'Sai Sandeep Naskuri',
+      role: 'Senior PostgreSQL Architect',
+      image: sai,
+      description: 'Database scaling specialist with deep knowledge of distributed systems',
       linkedin: '#',
       twitter: '#'
     },
     {
-      name: 'Mike Chen',
-      role: 'Security Expert',
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face',
-      description: 'Database security specialist with advanced certifications in cybersecurity',
+      name: 'Galaba Bala Chandra Sekhar',
+      role: 'Database Security Expert',
+      image: chandu,
+      description: 'Security certification specialist focused on compliance and hardening',
       linkedin: '#',
       twitter: '#'
     },
-    {
-      name: 'Lisa Rodriguez',
-      role: 'Performance Analyst',
-      image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop&crop=face',
-      description: 'Performance tuning expert with a track record of 10x speed improvements',
-      linkedin: '#',
-      twitter: '#'
-    },
-    {
-      name: 'David Kumar',
-      role: 'DevOps Engineer',
-      image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop&crop=face',
-      description: 'Infrastructure automation and deployment specialist',
-      linkedin: '#',
-      twitter: '#'
-    },
-    {
-      name: 'Emma Wilson',
-      role: 'Data Analyst',
-      image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=400&fit=crop&crop=face',
-      description: 'Business intelligence and data analytics expert',
-      linkedin: '#',
-      twitter: '#'
-    }
   ];
 
   const testimonials = [
@@ -177,15 +156,14 @@ const About = () => {
                 className="overflow-hidden hover:shadow-xl transition-all duration-300 animate-fade-in group hover:-translate-y-2"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className="relative">
+                <div className="flex flex-col items-center pt-6 pb-0">
                   <img 
                     src={member.image} 
                     alt={member.name}
-                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300"
+                    className="w-40 h-40 object-cover rounded-full mx-auto mb-4 shadow-lg border-4 border-white"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
-                <CardContent className="p-6">
+                <CardContent className="p-6 text-center">
                   <h3 className="text-xl font-bold mb-2 text-gray-800">{member.name}</h3>
                   <p className="text-fixmy-orange-600 font-semibold mb-3">{member.role}</p>
                   <p className="text-gray-600 text-sm leading-relaxed mb-4">{member.description}</p>
