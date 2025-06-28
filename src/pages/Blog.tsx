@@ -85,9 +85,21 @@ const Blog = () => {
 
   return (
     <div className="min-h-screen pt-20">
-      {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 via-orange-50 to-fixmy-orange-100">
-        <div className="container mx-auto px-6 text-center">
+      {/* Hero Section with Background Image */}
+      <section className="py-20 bg-gradient-to-br from-gray-50 via-orange-50 to-fixmy-orange-100 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <img 
+            src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=1200&h=600&fit=crop" 
+            alt="Database Code Background"
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <div className="container mx-auto px-6 text-center relative z-10">
+          <div className="flex justify-center mb-6">
+            <svg className="w-16 h-16 text-fixmy-orange-600" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+            </svg>
+          </div>
           <h1 className="text-5xl md:text-6xl font-bold mb-6 gradient-text animate-fade-in">
             Database Insights
           </h1>
@@ -178,9 +190,11 @@ const Blog = () => {
                     <span className="text-sm text-fixmy-orange-600 font-medium">
                       {post.readTime}
                     </span>
-                    <Button variant="ghost" className="text-fixmy-orange-600 hover:text-fixmy-orange-700 hover:bg-fixmy-orange-50 p-0">
-                      Read More <ArrowRight className="ml-2 w-4 h-4" />
-                    </Button>
+                    <Link to={`/blog/${post.id}`}>
+                      <Button variant="ghost" className="text-fixmy-orange-600 hover:text-fixmy-orange-700 hover:bg-fixmy-orange-50 p-0">
+                        Read More <ArrowRight className="ml-2 w-4 h-4" />
+                      </Button>
+                    </Link>
                   </div>
                 </CardContent>
               </Card>
@@ -196,8 +210,20 @@ const Blog = () => {
       </section>
 
       {/* Newsletter CTA */}
-      <section className="py-20 bg-gradient-to-r from-fixmy-orange-600 to-fixmy-orange-500 text-white">
-        <div className="container mx-auto px-6 text-center">
+      <section className="py-20 bg-gradient-to-r from-fixmy-orange-600 to-fixmy-orange-500 text-white relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <img 
+            src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200&h=400&fit=crop" 
+            alt="Code Background"
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <div className="container mx-auto px-6 text-center relative z-10">
+          <div className="flex justify-center mb-6">
+            <svg className="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+            </svg>
+          </div>
           <h2 className="text-4xl font-bold mb-6 animate-fade-in">
             Stay Updated
           </h2>

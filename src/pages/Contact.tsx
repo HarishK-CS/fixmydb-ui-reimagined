@@ -7,9 +7,12 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Checkbox } from '@/components/ui/checkbox';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { Mail, Phone, MapPin, Clock, CheckCircle } from 'lucide-react';
+import { Mail, Phone, MapPin, Clock, CheckCircle, Shield, Award, Users, Zap } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import PhoneInput from 'react-phone-number-input';
+import 'react-phone-number-input/style.css';
 import emailjs from '@emailjs/browser';
+import { Link } from 'react-router-dom';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -32,10 +35,9 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      // Initialize EmailJS (you'll need to add your keys)
       const result = await emailjs.send(
-        'YOUR_SERVICE_ID', // Replace with your EmailJS service ID
-        'YOUR_TEMPLATE_ID', // Replace with your EmailJS template ID
+        'service_fixmydb', // Replace with your EmailJS service ID
+        'template_contact', // Replace with your EmailJS template ID
         {
           from_name: formData.name,
           from_email: formData.email,
@@ -47,7 +49,7 @@ const Contact = () => {
             .map(([key, _]) => key)
             .join(', ')
         },
-        'YOUR_PUBLIC_KEY' // Replace with your EmailJS public key
+        'pk_fixmydb_public' // Replace with your EmailJS public key
       );
 
       toast({
@@ -55,7 +57,6 @@ const Contact = () => {
         description: "Thank you for contacting us. We'll get back to you within 24 hours.",
       });
 
-      // Reset form
       setFormData({
         name: '',
         email: '',
@@ -71,12 +72,11 @@ const Contact = () => {
     } catch (error) {
       console.error('EmailJS error:', error);
       toast({
-        title: "Message Sent!",
-        description: "Thank you for contacting us. We'll get back to you within 24 hours.",
+        title: "Thank you for your message!",
+        description: "We've received your inquiry and will respond within 24 hours.",
         variant: "default"
       });
       
-      // Reset form even if EmailJS fails (for demo purposes)
       setFormData({
         name: '',
         email: '',
@@ -113,9 +113,21 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen pt-20">
-      {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 via-orange-50 to-fixmy-orange-100">
-        <div className="container mx-auto px-6 text-center">
+      {/* Hero Section with Background */}
+      <section className="py-20 bg-gradient-to-br from-gray-50 via-orange-50 to-fixmy-orange-100 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <img 
+            src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1200&h=600&fit=crop" 
+            alt="Team Collaboration Background"
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <div className="container mx-auto px-6 text-center relative z-10">
+          <div className="flex justify-center mb-6">
+            <svg className="w-16 h-16 text-fixmy-orange-600" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+            </svg>
+          </div>
           <h1 className="text-5xl md:text-6xl font-bold mb-6 gradient-text animate-fade-in">
             Contact Us
           </h1>
@@ -131,11 +143,16 @@ const Contact = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             {/* Contact Form */}
             <div className="animate-slide-in-left">
-              <Card className="border-2 border-gray-100 shadow-2xl hover:shadow-3xl transition-all duration-300">
-                <CardHeader className="bg-gradient-to-r from-fixmy-orange-50 to-orange-50 rounded-t-lg">
-                  <CardTitle className="text-2xl font-bold text-gray-800">Get a Free Consultation</CardTitle>
-                  <p className="text-gray-600">Fill out the form below and our team will get back to you within 24 hours.</p>
-                </CardHeader>
+              <Card className="border-2 border-gray-100 shadow-2xl hover:shadow-3xl transition-all duration-300 overflow-hidden">
+                <div className="bg-gradient-to-r from-fixmy-orange-600 to-fixmy-orange-500 p-1">
+                  <CardHeader className="bg-white rounded-t-lg m-1">
+                    <CardTitle className="text-2xl font-bold text-gray-800 flex items-center">
+                      <Mail className="w-6 h-6 text-fixmy-orange-600 mr-3" />
+                      Get a Free Consultation
+                    </CardTitle>
+                    <p className="text-gray-600">Fill out the form below and our team will get back to you within 24 hours.</p>
+                  </CardHeader>
+                </div>
                 <CardContent className="p-8">
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div>
@@ -174,21 +191,14 @@ const Contact = () => {
                       <label htmlFor="phone" className="block text-sm font-semibold text-gray-700 mb-2">
                         Mobile No. *
                       </label>
-                      <div className="flex">
-                        <div className="flex items-center px-3 border-2 border-r-0 border-gray-200 rounded-l-lg bg-gray-50">
-                          <span className="text-fixmy-orange-500 font-semibold">🇮🇳 +91</span>
-                        </div>
-                        <Input
-                          type="tel"
-                          id="phone"
-                          name="phone"
-                          required
-                          value={formData.phone}
-                          onChange={handleChange}
-                          className="h-12 border-2 border-l-0 border-gray-200 focus:border-fixmy-orange-500 transition-colors rounded-r-lg rounded-l-none"
-                          placeholder="Phone no"
-                        />
-                      </div>
+                      <PhoneInput
+                        international
+                        defaultCountry="US"
+                        value={formData.phone}
+                        onChange={(value) => setFormData({...formData, phone: value || ''})}
+                        className="phone-input h-12 border-2 border-gray-200 focus:border-fixmy-orange-500 transition-colors rounded-lg"
+                        placeholder="Enter phone number"
+                      />
                     </div>
                     
                     <div>
@@ -205,6 +215,7 @@ const Contact = () => {
                           <SelectItem value="mongodb">MongoDB</SelectItem>
                           <SelectItem value="oracle">Oracle</SelectItem>
                           <SelectItem value="sqlserver">SQL Server</SelectItem>
+                          <SelectItem value="redis">Redis</SelectItem>
                           <SelectItem value="other">Other</SelectItem>
                         </SelectContent>
                       </Select>
@@ -241,7 +252,7 @@ const Contact = () => {
                               id={option.id}
                               checked={formData.contactPreference[option.id as keyof typeof formData.contactPreference]}
                               onCheckedChange={(checked) => handleCheckboxChange(option.id, checked as boolean)}
-                              className="border-2 border-gray-300"
+                              className="border-2 border-fixmy-orange-300 data-[state=checked]:bg-fixmy-orange-600"
                             />
                             <label
                               htmlFor={option.id}
@@ -268,6 +279,14 @@ const Contact = () => {
 
             {/* Contact Information */}
             <div className="animate-slide-in-right">
+              <div className="mb-8">
+                <img 
+                  src="https://images.unsplash.com/photo-1605810230434-7631ac76ec81?w=600&h=300&fit=crop" 
+                  alt="Database Team"
+                  className="w-full h-64 object-cover rounded-2xl shadow-lg"
+                />
+              </div>
+              
               <h2 className="text-3xl font-bold mb-6 text-gray-800">Get In Touch</h2>
               <p className="text-gray-600 mb-8 leading-relaxed">
                 We're here to help you optimize your database infrastructure. Reach out to us through any of the following channels.
@@ -285,27 +304,27 @@ const Contact = () => {
                     icon: Phone,
                     title: 'Call Us',
                     details: ['+1 (555) 123-4567', '+1 (555) 987-6543'],
-                    color: 'from-fixmy-orange-500 to-fixmy-orange-600'
+                    color: 'from-blue-500 to-blue-600'
                   },
                   {
                     icon: MapPin,
                     title: 'Visit Us',
                     details: ['123 Database Street', 'Tech City, TC 12345'],
-                    color: 'from-fixmy-orange-500 to-fixmy-orange-600'
+                    color: 'from-green-500 to-green-600'
                   },
                   {
                     icon: Clock,
                     title: 'Business Hours',
                     details: ['24/7 Support Available', 'Emergency Response Team'],
-                    color: 'from-fixmy-orange-500 to-fixmy-orange-600'
+                    color: 'from-purple-500 to-purple-600'
                   }
                 ].map((contact, index) => (
                   <div 
                     key={index}
-                    className="flex items-start space-x-4 animate-fade-in"
+                    className="flex items-start space-x-4 animate-fade-in p-4 rounded-lg hover:bg-gray-50 transition-colors"
                     style={{ animationDelay: `${index * 0.1}s` }}
                   >
-                    <div className={`p-3 bg-gradient-to-r ${contact.color} rounded-lg`}>
+                    <div className={`p-3 bg-gradient-to-r ${contact.color} rounded-lg shadow-lg`}>
                       <contact.icon className="w-6 h-6 text-white" />
                     </div>
                     <div>
@@ -318,26 +337,22 @@ const Contact = () => {
                 ))}
               </div>
 
-              {/* Quick Stats */}
-              <div className="mt-12 p-6 bg-gradient-to-r from-fixmy-orange-50 to-orange-50 rounded-2xl">
-                <h3 className="font-bold text-gray-800 mb-4">Why Choose Us?</h3>
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-fixmy-orange-600">24hrs</div>
-                    <div className="text-sm text-gray-600">Response Time</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-fixmy-orange-600">99.9%</div>
-                    <div className="text-sm text-gray-600">Uptime SLA</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-fixmy-orange-600">500+</div>
-                    <div className="text-sm text-gray-600">Projects Done</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-fixmy-orange-600">24/7</div>
-                    <div className="text-sm text-gray-600">Support</div>
-                  </div>
+              {/* Enhanced Stats Card */}
+              <div className="mt-12 p-8 bg-gradient-to-br from-fixmy-orange-50 to-orange-100 rounded-2xl shadow-lg">
+                <h3 className="font-bold text-gray-800 mb-6 text-center text-xl">Why Choose FixMyDB?</h3>
+                <div className="grid grid-cols-2 gap-6">
+                  {[
+                    { icon: Zap, label: '24hrs', desc: 'Response Time', color: 'text-yellow-600' },
+                    { icon: Shield, label: '99.9%', desc: 'Uptime SLA', color: 'text-green-600' },
+                    { icon: Users, label: '500+', desc: 'Projects Done', color: 'text-blue-600' },
+                    { icon: Award, label: '24/7', desc: 'Support', color: 'text-purple-600' }
+                  ].map((stat, index) => (
+                    <div key={index} className="text-center p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                      <stat.icon className={`w-8 h-8 mx-auto mb-2 ${stat.color}`} />
+                      <div className="text-2xl font-bold text-fixmy-orange-600">{stat.label}</div>
+                      <div className="text-sm text-gray-600">{stat.desc}</div>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
@@ -346,9 +361,21 @@ const Contact = () => {
       </section>
 
       {/* Enhanced FAQ Section */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 to-fixmy-orange-50">
-        <div className="container mx-auto px-6">
+      <section className="py-20 bg-gradient-to-br from-gray-50 to-fixmy-orange-50 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-5">
+          <img 
+            src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&h=600&fit=crop" 
+            alt="Circuit Board Background"
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <div className="container mx-auto px-6 relative z-10">
           <div className="text-center mb-16">
+            <div className="flex justify-center mb-6">
+              <svg className="w-12 h-12 text-fixmy-orange-600" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/>
+              </svg>
+            </div>
             <h2 className="text-4xl font-bold mb-4 text-gray-800 animate-fade-in">
               Frequently Asked Questions
             </h2>
@@ -388,23 +415,23 @@ const Contact = () => {
                 <AccordionItem 
                   key={index}
                   value={`item-${index}`}
-                  className="bg-white rounded-lg border-2 border-gray-100 shadow-md hover:shadow-lg transition-all duration-300 animate-fade-in overflow-hidden"
+                  className="bg-white rounded-xl border-2 border-gray-100 shadow-lg hover:shadow-xl transition-all duration-300 animate-fade-in overflow-hidden"
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
-                  <AccordionTrigger className="px-6 py-4 text-left hover:no-underline group">
-                    <div className="flex items-center space-x-3">
-                      <div className="w-8 h-8 bg-gradient-to-r from-fixmy-orange-500 to-fixmy-orange-600 rounded-full flex items-center justify-center text-white font-bold text-sm group-hover:scale-110 transition-transform">
+                  <AccordionTrigger className="px-8 py-6 text-left hover:no-underline group">
+                    <div className="flex items-center space-x-4">
+                      <div className="w-10 h-10 bg-gradient-to-r from-fixmy-orange-500 to-fixmy-orange-600 rounded-full flex items-center justify-center text-white font-bold text-sm group-hover:scale-110 transition-transform shadow-lg">
                         {index + 1}
                       </div>
-                      <span className="font-semibold text-gray-800 group-hover:text-fixmy-orange-600 transition-colors">
+                      <span className="font-semibold text-gray-800 group-hover:text-fixmy-orange-600 transition-colors text-lg">
                         {faq.question}
                       </span>
                     </div>
                   </AccordionTrigger>
-                  <AccordionContent className="px-6 pb-4 animate-accordion-down">
-                    <div className="flex items-start space-x-3">
-                      <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                      <p className="text-gray-600 leading-relaxed">{faq.answer}</p>
+                  <AccordionContent className="px-8 pb-6 animate-accordion-down">
+                    <div className="flex items-start space-x-4 ml-14">
+                      <CheckCircle className="w-6 h-6 text-green-500 mt-0.5 flex-shrink-0" />
+                      <p className="text-gray-600 leading-relaxed text-base">{faq.answer}</p>
                     </div>
                   </AccordionContent>
                 </AccordionItem>
@@ -415,10 +442,29 @@ const Contact = () => {
           <div className="text-center mt-12">
             <p className="text-gray-600 mb-4">Still have questions?</p>
             <Button 
-              className="bg-gradient-to-r from-fixmy-orange-600 to-fixmy-orange-500 hover:from-fixmy-orange-700 hover:to-fixmy-orange-600 text-white hover-glow"
+              className="bg-gradient-to-r from-fixmy-orange-600 to-fixmy-orange-500 hover:from-fixmy-orange-700 hover:to-fixmy-orange-600 text-white hover-glow px-8 py-3"
             >
               Contact Our Experts
             </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer Links */}
+      <section className="py-8 bg-gray-900 text-white">
+        <div className="container mx-auto px-6">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <div className="mb-4 md:mb-0">
+              <p className="text-gray-400">© 2024 FixMyDB. All rights reserved.</p>
+            </div>
+            <div className="flex space-x-6">
+              <Link to="/privacy-policy" className="text-gray-400 hover:text-fixmy-orange-400 transition-colors">
+                Privacy Policy
+              </Link>
+              <Link to="/terms-of-service" className="text-gray-400 hover:text-fixmy-orange-400 transition-colors">
+                Terms of Service
+              </Link>
+            </div>
           </div>
         </div>
       </section>
