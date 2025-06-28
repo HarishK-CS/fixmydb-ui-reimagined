@@ -2,10 +2,104 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Database, Shield, Zap, Clock, Users, Award } from 'lucide-react';
+import { Input } from '@/components/ui/input';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Database, Shield, Zap, Clock, Users, Award, Search, Calendar, ArrowRight } from 'lucide-react';
+
+// Counter hook for animated numbers
+const useCounter = (end: number, duration: number = 2000) => {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    let startTime: number;
+    let animationFrame: number;
+
+    const updateCount = (timestamp: number) => {
+      if (!startTime) startTime = timestamp;
+      const progress = Math.min((timestamp - startTime) / duration, 1);
+      setCount(Math.floor(progress * end));
+
+      if (progress < 1) {
+        animationFrame = requestAnimationFrame(updateCount);
+      }
+    };
+
+    animationFrame = requestAnimationFrame(updateCount);
+    return () => cancelAnimationFrame(animationFrame);
+  }, [end, duration]);
+
+  return count;
+};
+
+const CounterCard = ({ end, suffix, label, delay = 0 }: { end: number; suffix: string; label: string; delay?: number }) => {
+  const [shouldStart, setShouldStart] = useState(false);
+  const count = useCounter(shouldStart ? end : 0);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setShouldStart(true), delay);
+    return () => clearTimeout(timer);
+  }, [delay]);
+
+  return (
+    <div className="animate-scale-in" style={{ animationDelay: `${delay / 1000}s` }}>
+      <div className="text-3xl font-bold text-fixmy-orange-600 mb-2">
+        {count}{suffix}
+      </div>
+      <div className="text-gray-600">{label}</div>
+    </div>
+  );
+};
+
+const BlogCard = ({ title, excerpt, date, image }: { title: string; excerpt: string; date: string; image: string }) => (
+  <Card className="hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer">
+    <CardHeader className="p-0">
+      <div className="h-48 bg-gradient-to-r from-fixmy-orange-500 to-orange-600 rounded-t-lg flex items-center justify-center">
+        <Database className="w-16 h-16 text-white" />
+      </div>
+    </CardHeader>
+    <CardContent className="p-6">
+      <div className="flex items-center text-sm text-gray-500 mb-2">
+        <Calendar className="w-4 h-4 mr-2" />
+        {date}
+      </div>
+      <CardTitle className="mb-3 hover:text-fixmy-orange-600 transition-colors">{title}</CardTitle>
+      <p className="text-gray-600 mb-4">{excerpt}</p>
+      <Button variant="ghost" className="p-0 h-auto text-fixmy-orange-600 hover:text-fixmy-orange-700">
+        Read More <ArrowRight className="w-4 h-4 ml-2" />
+      </Button>
+    </CardContent>
+  </Card>
+);
 
 const Home = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const blogPosts = [
+    {
+      title: "Database Performance Optimization: Best Practices",
+      excerpt: "Learn the essential techniques to optimize your database performance and reduce query execution time by up to 80%.",
+      date: "December 15, 2024",
+      image: "/placeholder-blog-1.jpg"
+    },
+    {
+      title: "MySQL vs PostgreSQL: Choosing the Right Database",
+      excerpt: "Comprehensive comparison of MySQL and PostgreSQL to help you make the right choice for your next project.",
+      date: "December 10, 2024",
+      image: "/placeholder-blog-2.jpg"
+    },
+    {
+      title: "Database Security: Protecting Your Data in 2024",
+      excerpt: "Essential security measures every database administrator should implement to protect sensitive data.",
+      date: "December 5, 2024",
+      image: "/placeholder-blog-3.jpg"
+    }
+  ];
+
+  const filteredPosts = blogPosts.filter(post =>
+    post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    post.excerpt.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   useEffect(() => {
     setIsVisible(true);
@@ -56,18 +150,9 @@ const Home = () => {
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-              <div className="animate-scale-in" style={{ animationDelay: '0.2s' }}>
-                <div className="text-3xl font-bold text-fixmy-orange-600 mb-2">99.9%</div>
-                <div className="text-gray-600">Uptime Guarantee</div>
-              </div>
-              <div className="animate-scale-in" style={{ animationDelay: '0.4s' }}>
-                <div className="text-3xl font-bold text-fixmy-orange-500 mb-2">24/7</div>
-                <div className="text-gray-600">Expert Support</div>
-              </div>
-              <div className="animate-scale-in" style={{ animationDelay: '0.6s' }}>
-                <div className="text-3xl font-bold text-orange-600 mb-2">500+</div>
-                <div className="text-gray-600">Databases Optimized</div>
-              </div>
+              <CounterCard end={99.9} suffix="%" label="Uptime Guarantee" delay={200} />
+              <CounterCard end={24} suffix="/7" label="Expert Support" delay={400} />
+              <CounterCard end={500} suffix="+" label="Databases Optimized" delay={600} />
             </div>
           </div>
         </div>
@@ -143,6 +228,58 @@ const Home = () => {
                 View All Services
               </Button>
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Blog Section */}
+      <section className="py-20 bg-gradient-to-br from-gray-50 to-fixmy-orange-50">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold mb-4 gradient-text">Latest Insights</h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+              Stay updated with the latest database trends, best practices, and expert insights
+            </p>
+            
+            {/* Search Bar */}
+            <div className="max-w-md mx-auto relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+              <Input
+                type="text"
+                placeholder="Search articles..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="pl-10 pr-4 py-3 rounded-full border-2 border-fixmy-orange-200 focus:border-fixmy-orange-500 transition-colors"
+              />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {filteredPosts.map((post, index) => (
+              <div
+                key={index}
+                className="animate-fade-in"
+                style={{ animationDelay: `${index * 0.2}s` }}
+              >
+                <BlogCard {...post} />
+              </div>
+            ))}
+          </div>
+
+          {filteredPosts.length === 0 && searchQuery && (
+            <div className="text-center py-12">
+              <p className="text-gray-500 text-lg">No articles found matching "{searchQuery}"</p>
+            </div>
+          )}
+
+          <div className="text-center mt-12">
+            <Button 
+              variant="outline"
+              size="lg"
+              className="border-fixmy-orange-600 text-fixmy-orange-600 hover:bg-fixmy-orange-50 hover-glow"
+            >
+              View All Articles
+            </Button>
           </div>
         </div>
       </section>
