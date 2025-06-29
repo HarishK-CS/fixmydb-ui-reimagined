@@ -167,7 +167,7 @@ const Home = () => {
               </div>
 
               {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+              <div className="flex flex-col sm:flex-row  gap-4 justify-center lg:justify-start">
                 <Link to="/contact" className="flex-1">
                   <Button
                     size="lg"
@@ -191,8 +191,8 @@ const Home = () => {
               </div>
 
               {/* Free Consultation Highlight */}
-              <div className="bg-gradient-to-r from-fixmy-orange-50 to-orange-50 border-l-4 border-fixmy-orange-500 rounded-r-xl p-6 shadow-sm">
-                <div className="flex items-center gap-3 mb-3">
+              <div className="bg-gradient-to-r from-fixmy-orange-50 to-orange-50 border-l-4 border-fixmy-orange-500 rounded-r-xl p-6 shadow-sm  !mt-20">
+                <div className="flex items-center  gap-3 mb-3">
                   <div className="w-10 h-10 bg-fixmy-orange-100 rounded-full flex items-center justify-center">
                     <span className="text-fixmy-orange-600 text-xl">🎯</span>
                   </div>

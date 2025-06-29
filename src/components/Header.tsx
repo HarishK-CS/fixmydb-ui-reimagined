@@ -16,7 +16,13 @@ const navigation = [
 export const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [showConsult, setShowConsult] = useState(true);
+  // Set showConsult default based on screen size
+  const [showConsult, setShowConsult] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return window.innerWidth >= 768; // true for desktop, false for mobile/tablet
+    }
+    return true;
+  });
   const [isTyping, setIsTyping] = useState(false);
   const [showAskQuestion, setShowAskQuestion] = useState(true);
   const consultTimer = useRef<NodeJS.Timeout | null>(null);
@@ -29,6 +35,15 @@ export const Header = () => {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Update showConsult if screen is resized across mobile/desktop breakpoint
+  useEffect(() => {
+    const handleResize = () => {
+      setShowConsult(window.innerWidth >= 768);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   const toggleMobileMenu = () => {
