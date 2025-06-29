@@ -225,8 +225,8 @@ const Home = () => {
             <div className={`relative w-full max-w-lg mx-auto lg:mx-0 flex flex-col justify-center items-center h-full gap-8 ${style.animatefloat}`}>
               <div className="w-full max-w-md mx-auto flex flex-col items-center relative">
                 {/* Lottie Animation */}
-                <div className="relative flex items-center justify-center w-80 h-[28rem] mx-auto">
-                  <Lottie animationData={personMonitor} loop={true} className="w-80 h-[28rem] z-10" />
+                <div className="relative flex items-center justify-center w-90 h-[28rem] mx-auto">
+                  <Lottie animationData={personMonitor} loop={true} className="w-90 h-[30rem] z-10" />
                   {/* Database Logos Around Lottie - Each with a unique animation, no circle or background */}
                   {/* Top Center (MySQL) - pulse */}
                   <img src={mysqlLogo} alt="MySQL" className="absolute top-6 left-1/2 -translate-x-1/2 w-14 h-14 animate-pulse" />

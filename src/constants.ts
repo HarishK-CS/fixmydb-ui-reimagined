@@ -8,4 +8,4 @@ export const PHONE = "+91 7675028957";
 export const ADDRESS = "1-87 Palluru Village, Kunavaram Mandal, Alluri Seetha Rama Raju District, AP 507121";
 export const WHATSAPP = "+91 7675028957";
 export const WEBSITE = "https://fixmydb.com";
-export const SUPPORT_HOURS = "Mon-Sat 9:00am - 7:00pm IST";
+export const SUPPORT_HOURS = "Mon-Fri 9:00am - 6:00pm IST";

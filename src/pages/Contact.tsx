@@ -6,14 +6,15 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Checkbox } from '@/components/ui/checkbox';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { Mail, Phone, MapPin, Clock, CheckCircle, Shield, Award, Users, Zap } from 'lucide-react';
+import { Mail, Phone, MapPin, Clock, CheckCircle, Shield, Award, Users, Zap, MessageCircle } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import emailjs from '@emailjs/browser';
 import { Link } from 'react-router-dom';
-import { COMPANY_NAME, SUPPORT_EMAIL, PHONE, ADDRESS, WHATSAPP, WEBSITE, SUPPORT_HOURS } from '../constants';
+import { COMPANY_NAME, SUPPORT_EMAIL, PHONE, ADDRESS, WHATSAPP, WEBSITE, SUPPORT_HOURS, SUPPORT_EMAIL_2 } from '../constants';
 import { parsePhoneNumberFromString } from 'libphonenumber-js';
 import ReactPhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
+import whatsappLogo from '../assets/whatsapp.png';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -229,7 +230,6 @@ const Contact = () => {
                         enableSearch
                         inputStyle={{ width: '100%' }}
                         specialLabel=""
-                        masks={{ in: '(..) .....' }}
                       />
                     </div>
 
@@ -325,7 +325,7 @@ const Contact = () => {
                   {
                     icon: Mail,
                     title: 'Email Us',
-                    details: [SUPPORT_EMAIL],
+                    details: [SUPPORT_EMAIL, SUPPORT_EMAIL_2],
                     color: 'from-fixmy-orange-500 to-fixmy-orange-600'
                   },
                   {
@@ -343,7 +343,14 @@ const Contact = () => {
                   {
                     icon: Clock,
                     title: 'Business Hours',
-                    details: ['24/7 Support Available', 'Emergency Response Team'],
+                    details: [
+                      '24/7 Support Available',
+                      {
+                        type: 'whatsapp',
+                        label: 'Emergency Response Team',
+                        value: PHONE
+                      }
+                    ],
                     color: 'from-purple-500 to-purple-600'
                   }
                 ].map((contact, index) => (
@@ -358,7 +365,23 @@ const Contact = () => {
                     <div>
                       <h3 className="font-semibold text-gray-800 mb-1">{contact.title}</h3>
                       {contact.details.map((detail, idx) => (
-                        <p key={idx} className="text-gray-600">{detail}</p>
+                        typeof detail === 'string' ? (
+                          <p key={idx} className="text-gray-600">{detail}</p>
+                        ) : detail.type === 'whatsapp' ? (
+                          <>
+                            <span key={idx + '-label'} className="text-gray-600 font-semibold flex items-center gap-2">
+                              {detail.label}
+                            </span>
+                            <span key={idx + '-wa'} className="flex items-center gap-2 mt-1">
+                              <span className="text-gray-600">via </span>
+                              <img src={whatsappLogo} alt="WhatsApp" className="w-5 h-5" />
+                              <span className="text-fixmy-orange-700 font-medium">
+                                <a href={`https://wa.me/${detail.value.replace(/\D/g, '')}`} target="_blank" rel="noopener noreferrer" className="underline">{detail.value}</a>
+                              </span>
+
+                            </span>
+                          </>
+                        ) : null
                       ))}
                     </div>
                   </div>
@@ -388,24 +411,6 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* Footer Links */}
-      <section className="py-8 bg-gray-900 text-white">
-        <div className="container mx-auto px-6">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="mb-4 md:mb-0">
-              <p className="text-gray-400">© 2024 FixMyDB. All rights reserved.</p>
-            </div>
-            <div className="flex space-x-6">
-              <Link to="/privacy-policy" className="text-gray-400 hover:text-fixmy-orange-400 transition-colors">
-                Privacy Policy
-              </Link>
-              <Link to="/terms-of-service" className="text-gray-400 hover:text-fixmy-orange-400 transition-colors">
-                Terms of Service
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
   );
 };
