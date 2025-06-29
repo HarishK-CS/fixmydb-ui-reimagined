@@ -145,13 +145,13 @@ const Home = () => {
               </div>
 
               {/* Trust Indicators */}
-              <div className="flex flex-wrap justify-center lg:justify-start gap-3">
-                <span className="bg-green-100 text-green-800 px-4 py-2 rounded-full font-medium text-sm flex items-center gap-2">
+              <div className="flex flex-wrap justify-center lg:justify-center gap-3">
+                {/* <span className="bg-green-100 text-green-800 px-4 py-2 rounded-full font-medium text-sm flex items-center gap-2">
                   <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
                   Client-Centric Approach to Every Project
-                </span>
+                </span> */}
                 <span className="bg-blue-100 text-blue-800 px-4 py-2 rounded-full font-medium text-sm flex items-center gap-2">
                   <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
@@ -179,15 +179,15 @@ const Home = () => {
                     Claim Your Free Assessment
                   </Button>
                 </Link>
-                {/* <Link to="/about#whatourclientsay" className="flex-1">
+                <Link to="/services" className="flex justify-center w-full sm:w-auto">
                   <Button
-                    variant="outline"
                     size="lg"
-                    className="w-full border-2 border-fixmy-orange-600 text-fixmy-orange-600 hover:bg-fixmy-orange-50 px-8 py-4 text-lg hover-glow"
+                    variant="outline"
+                    className="w-full sm:w-auto border-2 border-fixmy-orange-600 text-fixmy-orange-600 hover:bg-fixmy-orange-50 hover:text-fixmy-orange-700 px-8 py-4 text-lg hover-glow mx-auto"
                   >
-                    View Success Stories
+                    Explore Services
                   </Button>
-                </Link> */}
+                </Link>
               </div>
 
               {/* Free Consultation Highlight */}
@@ -204,7 +204,7 @@ const Home = () => {
                   <span className="font-bold text-fixmy-orange-600"> (Usually $500 - Yours FREE)</span>
                 </p> */}
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-sm">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-sm mt-10">
                   <div className="flex items-center gap-2 text-gray-600">
                     <span className="text-fixmy-orange-500">⏱️</span>
                     <strong>30-minute expert consultation</strong>

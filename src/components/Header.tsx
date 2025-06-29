@@ -255,7 +255,7 @@ export const Header = () => {
                           </div>
                           <div class=\"bg-fixmy-orange-50 text-fixmy-orange-800 px-3 py-2 rounded-2xl rounded-tl-sm shadow-sm text-sm max-w-[85%] border border-fixmy-orange-100\">
                             You can reach us at:<br/>
-                            <span class=\"font-semibold\">Phone:</span> <a href=\"tel:+919392528884\" class=\"underline text-fixmy-orange-700\">+91 7675028957</a><br/>
+                            <span class=\"font-semibold\">Phone:</span> <a href=\"tel:+919392528884\" class=\"underline text-fixmy-orange-700\">++91 9392528884</a><br/>
                             <span class=\"font-semibold\">Email:</span> <a href=\"mailto:support@fixmydb.com\" class=\"underline text-fixmy-orange-700\">support@fixmydb.com</a>
                           </div>
                         `;

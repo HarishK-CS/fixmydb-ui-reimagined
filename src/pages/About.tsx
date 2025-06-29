@@ -111,11 +111,11 @@ const About = () => {
             <div className="animate-slide-in-left">
               <h2 className="text-4xl font-bold mb-6 text-gray-800">Our Mission</h2>
               <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;At {COMPANY_NAME}, we believe that every business deserves a robust, secure, and high-performing database infrastructure.
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;At {COMPANY_NAME}, we believe that every business deserves a robust, secure, and high-performing database infrastructure.
                 Our mission is to eliminate the complexity and frustration that comes with database management, allowing you to focus on what matters most - growing your business.
               </p>
               <p className="text-lg text-gray-600 leading-relaxed">
-                We combine cutting-edge technology with deep expertise to deliver solutions that not only solve today's challenges
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;We combine cutting-edge technology with deep expertise to deliver solutions that not only solve today's challenges
                 but also prepare your infrastructure for tomorrow's opportunities.
               </p>
             </div>
