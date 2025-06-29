@@ -337,14 +337,11 @@ const Contact = () => {
                   {
                     icon: MapPin,
                     title: 'Visit Us',
-                    details: ["Building No./Flat No.: 13-184",
-                      "Road/Street: Chenetha Puri Road",
-                      "Nearby Landmark: Opposite to Ganesh Temple",
-                      "Locality/Sub Locality: Challareddy Palem",
-                      "City/Town/Village: Vetapalem",
-                      "District: Bapatla",
-                      "State: Andhra Pradesh",
-                      "PIN Code: 523187"],
+                    details: ["13-184, Chenetha Puri Road,",
+                      "Opposite to Ganesh Temple, Challareddy Palem,",
+                      "Vetapalem, Bapatla,",
+                      "Andhra Pradesh - 523 187",
+                    ],
                     color: 'from-green-500 to-green-600'
                   },
                   {
