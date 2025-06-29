@@ -166,6 +166,30 @@ const Home = () => {
                 </span>
               </div>
 
+              {/* CTA Buttons */}
+              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                <Link to="/contact" className="flex-1">
+                  <Button
+                    size="lg"
+                    className="w-full bg-gradient-to-r from-fixmy-orange-600 to-fixmy-orange-500 hover:from-fixmy-orange-700 hover:to-fixmy-orange-600 text-white px-8 py-4 text-lg hover-glow animate-pulse-glow relative shadow-lg"
+                  >
+                    <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-2 py-1 rounded-full animate-bounce font-bold">
+                      FREE
+                    </span>
+                    Claim Your Free Assessment
+                  </Button>
+                </Link>
+                <Link to="/about#whatourclientsay" className="flex-1">
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    className="w-full border-2 border-fixmy-orange-600 text-fixmy-orange-600 hover:bg-fixmy-orange-50 px-8 py-4 text-lg hover-glow"
+                  >
+                    View Success Stories
+                  </Button>
+                </Link>
+              </div>
+
               {/* Free Consultation Highlight */}
               <div className="bg-gradient-to-r from-fixmy-orange-50 to-orange-50 border-l-4 border-fixmy-orange-500 rounded-r-xl p-6 shadow-sm">
                 <div className="flex items-center gap-3 mb-3">
@@ -196,29 +220,7 @@ const Home = () => {
                 </div>
               </div>
 
-              {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                <Link to="/contact" className="flex-1">
-                  <Button
-                    size="lg"
-                    className="w-full bg-gradient-to-r from-fixmy-orange-600 to-fixmy-orange-500 hover:from-fixmy-orange-700 hover:to-fixmy-orange-600 text-white px-8 py-4 text-lg hover-glow animate-pulse-glow relative shadow-lg"
-                  >
-                    <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-2 py-1 rounded-full animate-bounce font-bold">
-                      FREE
-                    </span>
-                    Claim Your Free Assessment
-                  </Button>
-                </Link>
-                <Link to="/about#whatourclientsay" className="flex-1">
-                  <Button
-                    variant="outline"
-                    size="lg"
-                    className="w-full border-2 border-fixmy-orange-600 text-fixmy-orange-600 hover:bg-fixmy-orange-50 px-8 py-4 text-lg hover-glow"
-                  >
-                    View Success Stories
-                  </Button>
-                </Link>
-              </div>
+
             </div>
 
             {/* Right: Lottie Animation + DB Logos + Stats Grid */}
@@ -229,11 +231,11 @@ const Home = () => {
                   <Lottie animationData={personMonitor} loop={true} className="w-90 h-[30rem] z-10" />
                   {/* Database Logos Around Lottie - Each with a unique animation, no circle or background */}
                   {/* Top Center (MySQL) - pulse */}
-                  <img src={mysqlLogo} alt="MySQL" className="absolute top-6 left-1/2 -translate-x-1/2 w-14 h-14 animate-pulse" />
+                  <img src={mysqlLogo} alt="MySQL" className="absolute top-2 left-1/2 -translate-x-1/2 w-14 h-14 animate-pulse" />
                   {/* Top Left (PostgreSQL) - wiggle */}
                   <img src={postgresLogo} alt="PostgreSQL" className="absolute top-14 left-8 w-12 h-12 animate-wiggle" />
                   {/* Top Right (MongoDB) - spin */}
-                  <img src={mongodbLogo} alt="MongoDB" className="absolute top-14 right-8 w-12 h-12 animate-spin-slow" />
+                  <img src={mongodbLogo} alt="MongoDB" className="absolute top-14 right-8 w-12 h-12 animate-swing" />
                   {/* Left Center (Oracle) - swing */}
                   <img src={oracleLogo} alt="Oracle" className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 animate-swing" />
                   {/* Right Center (Redis) - bounce-x */}
