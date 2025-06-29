@@ -150,13 +150,13 @@ const Home = () => {
                   <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
-                  100% Client Satisfaction Rate
+                  Client-Centric Approach to Every Project
                 </span>
                 <span className="bg-blue-100 text-blue-800 px-4 py-2 rounded-full font-medium text-sm flex items-center gap-2">
                   <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
-                  Enterprise-Grade Security
+                  Tamper-Proof Data Integrity
                 </span>
                 <span className="bg-purple-100 text-purple-800 px-4 py-2 rounded-full font-medium text-sm flex items-center gap-2">
                   <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
@@ -167,11 +167,11 @@ const Home = () => {
               </div>
 
               {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row  gap-4 justify-center lg:justify-start">
-                <Link to="/contact" className="flex-1">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <Link to="/contact" className="flex justify-center w-full sm:w-auto">
                   <Button
                     size="lg"
-                    className="w-full bg-gradient-to-r from-fixmy-orange-600 to-fixmy-orange-500 hover:from-fixmy-orange-700 hover:to-fixmy-orange-600 text-white px-8 py-4 text-lg hover-glow animate-pulse-glow relative shadow-lg"
+                    className="w-full sm:w-auto bg-gradient-to-r from-fixmy-orange-600 to-fixmy-orange-500 hover:from-fixmy-orange-700 hover:to-fixmy-orange-600 text-white px-8 py-4 text-lg hover-glow animate-pulse-glow relative shadow-lg mx-auto"
                   >
                     <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-2 py-1 rounded-full animate-bounce font-bold">
                       FREE
@@ -179,7 +179,7 @@ const Home = () => {
                     Claim Your Free Assessment
                   </Button>
                 </Link>
-                <Link to="/about#whatourclientsay" className="flex-1">
+                {/* <Link to="/about#whatourclientsay" className="flex-1">
                   <Button
                     variant="outline"
                     size="lg"
@@ -187,7 +187,7 @@ const Home = () => {
                   >
                     View Success Stories
                   </Button>
-                </Link>
+                </Link> */}
               </div>
 
               {/* Free Consultation Highlight */}
@@ -199,10 +199,10 @@ const Home = () => {
                   <h3 className="text-xl font-bold text-fixmy-orange-700">FREE Database Health Assessment</h3>
                 </div>
 
-                <p className="text-gray-700 mb-3 leading-relaxed">
+                {/* <p className="text-gray-700 mb-3 leading-relaxed">
                   Get a comprehensive analysis of your current database setup + custom optimization roadmap
                   <span className="font-bold text-fixmy-orange-600"> (Usually $500 - Yours FREE)</span>
-                </p>
+                </p> */}
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-sm">
                   <div className="flex items-center gap-2 text-gray-600">
@@ -266,13 +266,13 @@ const Home = () => {
                   <div className="text-xs text-gray-500 mt-1">Never wait for help</div>
                 </div>
                 <div className="text-center animate-scale-in" style={{ animationDelay: `${400 / 1000}s` }}>
-                  <CounterCard end={500} suffix="+" label="Databases Optimized" delay={400} />
-                  <div className="text-xs text-gray-500 mt-1">Across 50+ industries</div>
+                  <CounterCard end={50} suffix="+" label="Databases Optimized" delay={400} />
+                  <div className="text-xs text-gray-500 mt-1">Consistently Delivering Excellence </div>
                 </div>
                 <div className="text-center animate-scale-in" style={{ animationDelay: `${550 / 1000}s` }}>
                   <div className="text-4xl font-bold text-fixmy-orange-600 mb-2">100%</div>
                   <div className="text-gray-600 font-medium">Client Satisfaction</div>
-                  <div className="text-xs text-gray-500 mt-1">12+ years proven track record</div>
+                  <div className="text-xs text-gray-500 mt-1">Tailored for Industry Diversity</div>
                 </div>
               </div>
 

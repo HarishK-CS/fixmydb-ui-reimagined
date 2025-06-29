@@ -10,7 +10,7 @@ import { Mail, Phone, MapPin, Clock, CheckCircle, Shield, Award, Users, Zap, Mes
 import { useToast } from '@/hooks/use-toast';
 import emailjs from '@emailjs/browser';
 import { Link } from 'react-router-dom';
-import { COMPANY_NAME, SUPPORT_EMAIL, PHONE, ADDRESS, WHATSAPP, WEBSITE, SUPPORT_HOURS, SUPPORT_EMAIL_2 } from '../constants';
+import { COMPANY_NAME, SUPPORT_EMAIL, PHONE, ADDRESS, WHATSAPP, WEBSITE, SUPPORT_HOURS } from '../constants';
 import { parsePhoneNumberFromString } from 'libphonenumber-js';
 import ReactPhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
@@ -63,8 +63,8 @@ const Contact = () => {
 
     try {
       const result = await emailjs.send(
-        'service_fixmydb',
-        'template_contact',
+        'service_fak0jqr',
+        'template_ld5f4lj',
         {
           from_name: formData.name,
           from_email: formData.email,
@@ -76,7 +76,7 @@ const Contact = () => {
             .map(([key, _]) => key)
             .join(', ')
         },
-        'pk_fixmydb_public'
+        'NT4XDHS0H7V2AmxwV'
       );
       toast({
         title: "Message Sent Successfully!",
@@ -325,7 +325,7 @@ const Contact = () => {
                   {
                     icon: Mail,
                     title: 'Email Us',
-                    details: [SUPPORT_EMAIL, SUPPORT_EMAIL_2],
+                    details: [SUPPORT_EMAIL,],
                     color: 'from-fixmy-orange-500 to-fixmy-orange-600'
                   },
                   {
@@ -337,7 +337,14 @@ const Contact = () => {
                   {
                     icon: MapPin,
                     title: 'Visit Us',
-                    details: ['123 Database Street', 'Tech City, TC 12345'],
+                    details: ["Building No./Flat No.: 13-184",
+                      "Road/Street: Chenetha Puri Road",
+                      "Nearby Landmark: Opposite to Ganesh Temple",
+                      "Locality/Sub Locality: Challareddy Palem",
+                      "City/Town/Village: Vetapalem",
+                      "District: Bapatla",
+                      "State: Andhra Pradesh",
+                      "PIN Code: 523187"],
                     color: 'from-green-500 to-green-600'
                   },
                   {
@@ -390,12 +397,12 @@ const Contact = () => {
 
               {/* Enhanced Stats Card (no Lottie) */}
               <div className="mt-8 p-8 bg-gradient-to-br from-fixmy-orange-50 to-orange-100 rounded-2xl shadow-lg">
-                <h3 className="font-bold text-gray-800 mb-6 text-center text-xl">Why Choose FixMyDB?</h3>
+                <h3 className="font-bold text-gray-800 mb-6 text-center text-xl">Why Choose {COMPANY_NAME}?</h3>
                 <div className="grid grid-cols-2 gap-6">
                   {[
                     { icon: Zap, label: '24hrs', desc: 'Response Time', color: 'text-yellow-600' },
                     { icon: Shield, label: '99.9%', desc: 'Uptime SLA', color: 'text-green-600' },
-                    { icon: Users, label: '500+', desc: 'Projects Done', color: 'text-blue-600' },
+                    { icon: Users, label: '20+', desc: 'Projects Done', color: 'text-blue-600' },
                     { icon: Award, label: '24/7', desc: 'Support', color: 'text-purple-600' }
                   ].map((stat, index) => (
                     <div key={index} className="text-center p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow">

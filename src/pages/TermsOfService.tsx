@@ -1,5 +1,6 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { COMPANY_NAME } from '@/constants';
 
 const TermsOfService = () => {
   return (
@@ -30,7 +31,7 @@ const TermsOfService = () => {
                 <CardTitle className="text-2xl text-fixmy-orange-600">Acceptance of Terms</CardTitle>
               </CardHeader>
               <CardContent className="prose max-w-none">
-                <p>By accessing and using FixMyDB services, you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to abide by the above, please do not use this service.</p>
+                <p>By accessing and using {COMPANY_NAME} services, you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to abide by the above, please do not use this service.</p>
               </CardContent>
             </Card>
 
@@ -39,7 +40,7 @@ const TermsOfService = () => {
                 <CardTitle className="text-2xl text-fixmy-orange-600">Service Description</CardTitle>
               </CardHeader>
               <CardContent className="prose max-w-none">
-                <p>FixMyDB provides database management, optimization, and consulting services including but not limited to:</p>
+                <p>{COMPANY_NAME} provides database management, optimization, and consulting services including but not limited to:</p>
                 <ul>
                   <li>Database performance optimization</li>
                   <li>Cloud migration services</li>
@@ -86,7 +87,7 @@ const TermsOfService = () => {
                 <CardTitle className="text-2xl text-fixmy-orange-600">Limitation of Liability</CardTitle>
               </CardHeader>
               <CardContent className="prose max-w-none">
-                <p>FixMyDB shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from your use of our services.</p>
+                <p>{COMPANY_NAME} shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from your use of our services.</p>
               </CardContent>
             </Card>
 

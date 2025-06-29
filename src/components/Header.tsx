@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Menu, X } from 'lucide-react';
 import logo from '../assets/logo.png'
+import { COMPANY_NAME } from '@/constants';
 
 const navigation = [
   { name: 'Home', href: '/' },
@@ -75,10 +76,10 @@ export const Header = () => {
             <Link to="/" className="flex items-center space-x-3 animate-slide-in-left">
               <img
                 src={logo}
-                alt="FixMyDB Logo"
+                alt="Fixmydb Logo"
                 className="w-10 h-10 object-contain"
               />
-              <span className="text-2xl font-bold gradient-text">FixMyDB</span>
+              <span className="text-2xl font-bold gradient-text">{COMPANY_NAME}</span>
             </Link>
 
             {/* Desktop Navigation */}
@@ -254,8 +255,8 @@ export const Header = () => {
                           </div>
                           <div class=\"bg-fixmy-orange-50 text-fixmy-orange-800 px-3 py-2 rounded-2xl rounded-tl-sm shadow-sm text-sm max-w-[85%] border border-fixmy-orange-100\">
                             You can reach us at:<br/>
-                            <span class=\"font-semibold\">Phone:</span> <a href=\"tel:+917675028957\" class=\"underline text-fixmy-orange-700\">+91 7675028957</a><br/>
-                            <span class=\"font-semibold\">Email:</span> <a href=\"mailto:technical-support@fixmydb.com\" class=\"underline text-fixmy-orange-700\">technical-support@fixmydb.com</a>
+                            <span class=\"font-semibold\">Phone:</span> <a href=\"tel:+919392528884\" class=\"underline text-fixmy-orange-700\">+91 7675028957</a><br/>
+                            <span class=\"font-semibold\">Email:</span> <a href=\"mailto:support@fixmydb.com\" class=\"underline text-fixmy-orange-700\">support@fixmydb.com</a>
                           </div>
                         `;
                         chatArea.appendChild(infoDiv);

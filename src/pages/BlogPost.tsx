@@ -58,8 +58,8 @@ const BlogPost = () => {
         <h2>Conclusion</h2>
         <p>Database optimization is an ongoing process that requires regular monitoring and adjustment. By implementing these best practices, you can ensure your database performs efficiently as your application scales.</p>
       `,
-      author: 'John Smith',
-      date: '2024-01-15',
+      author: 'V.M. Sai',
+      date: '2025-06-27',
       category: 'Performance',
       image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=400&fit=crop',
       readTime: '8 min read'
@@ -107,8 +107,8 @@ const BlogPost = () => {
           <li>Ecosystem and tooling needs</li>
         </ul>
       `,
-      author: 'Sarah Johnson',
-      date: '2024-01-12',
+      author: 'V.M. Sai',
+      date: '2025-06-21',
       category: 'Database Comparison',
       image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=400&fit=crop',
       readTime: '12 min read'
@@ -128,8 +128,8 @@ const BlogPost = () => {
         <h2>Conclusion</h2>
         <p>With the right backup strategy, you can recover from any disaster quickly and confidently.</p>
       `,
-      author: 'Priya Patel',
-      date: '2024-01-10',
+      author: 'V.M. Sai',
+      date: '2025-06-17',
       category: 'Backup & Recovery',
       image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&h=400&fit=crop',
       readTime: '7 min read'
@@ -149,8 +149,8 @@ const BlogPost = () => {
         <h2>Conclusion</h2>
         <p>Choosing the right scaling approach depends on your workload and business needs.</p>
       `,
-      author: 'David Lee',
-      date: '2024-01-08',
+      author: 'V.M. Sai',
+      date: '2025-06-11',
       category: 'Scaling',
       image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=800&h=400&fit=crop',
       readTime: '10 min read'
@@ -170,8 +170,8 @@ const BlogPost = () => {
         <h2>Conclusion</h2>
         <p>Implementing these security measures will help safeguard your data from breaches and attacks.</p>
       `,
-      author: 'Amit Sharma',
-      date: '2024-01-05',
+      author: 'V.M. Sai',
+      date: '2025-06-07',
       category: 'Security',
       image: 'https://images.unsplash.com/photo-1465101046530-73398c7f28ca?w=800&h=400&fit=crop',
       readTime: '9 min read'
@@ -191,8 +191,8 @@ const BlogPost = () => {
         <h2>Conclusion</h2>
         <p>Understand your data and requirements to make the best choice between SQL and NoSQL.</p>
       `,
-      author: 'Emily Chen',
-      date: '2024-01-02',
+      author: 'V.M. Sai',
+      date: '2025-06-02',
       category: 'Database Comparison',
       image: 'https://images.unsplash.com/photo-1464983953574-0892a716854b?w=800&h=400&fit=crop',
       readTime: '11 min read'
@@ -220,8 +220,8 @@ const BlogPost = () => {
     <div className="min-h-screen pt-20">
       {/* Hero Image */}
       <div className="relative h-96 overflow-hidden">
-        <img 
-          src={post.image} 
+        <img
+          src={post.image}
           alt={post.title}
           className="w-full h-full object-cover"
         />
@@ -280,7 +280,7 @@ const BlogPost = () => {
           {/* Article Content */}
           <Card className="mb-12">
             <CardContent className="p-8">
-              <div 
+              <div
                 className="prose prose-lg max-w-none"
                 dangerouslySetInnerHTML={{ __html: post.content }}
               />
@@ -301,8 +301,8 @@ const BlogPost = () => {
                   role="button"
                   aria-label={`Read blog post: ${relatedPost.title}`}
                 >
-                  <img 
-                    src={relatedPost.image} 
+                  <img
+                    src={relatedPost.image}
                     alt={relatedPost.title}
                     className="w-full h-48 object-cover"
                   />

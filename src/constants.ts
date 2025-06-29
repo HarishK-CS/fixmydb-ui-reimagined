@@ -1,11 +1,10 @@
 // src/constants.ts
 // Centralized constants for FixMyDB website
 
-export const COMPANY_NAME = "FixMyDB";
-export const SUPPORT_EMAIL = "technical-support@fixmydb.com";
-export const SUPPORT_EMAIL_2 = "saisandeepnaskuri2@gmail.com";
-export const PHONE = "+91 7675028957";
-export const ADDRESS = "1-87 Palluru Village, Kunavaram Mandal, Alluri Seetha Rama Raju District, AP 507121";
-export const WHATSAPP = "+91 7675028957";
+export const COMPANY_NAME = "Fixmydb";
+export const SUPPORT_EMAIL = "support@fixmydb.com";
+export const PHONE = "+91 9392528884";
+export const ADDRESS = "Building No./Flat No.: 13-184, Road/Street: Chenetha Puri Road, Nearby Landmark: Opposite to Ganesh Temple, Locality/Sub Locality: Challareddy Palem, City/Town/Village: Vetapalem, District: Bapatla, State: Andhra Pradesh, PIN Code: 523187";
+export const WHATSAPP = "+91 9392528884";
 export const WEBSITE = "https://fixmydb.com";
 export const SUPPORT_HOURS = "Mon-Fri 9:00am - 6:00pm IST";

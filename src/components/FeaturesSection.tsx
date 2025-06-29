@@ -1,4 +1,5 @@
 
+import { COMPANY_NAME } from '@/constants';
 import { useEffect, useRef } from 'react';
 
 const features = [
@@ -56,21 +57,20 @@ export const FeaturesSection = () => {
       <div className="container mx-auto px-6">
         <div className="text-center mb-16 animate-fade-in">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            <span className="gradient-text">Why Choose FixMyDB?</span>
+            <span className="gradient-text">Why Choose {COMPANY_NAME}?</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Built on years of expertise and cutting-edge technology, our platform delivers 
+            Built on years of expertise and cutting-edge technology, our platform delivers
             unmatched reliability and performance for your database infrastructure.
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {features.map((feature, index) => (
-            <div 
+            <div
               key={index}
-              className={`feature-item animate-on-scroll flex items-start space-x-6 p-6 bg-white rounded-xl shadow-lg hover-glow group ${
-                index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'
-              }`}
+              className={`feature-item animate-on-scroll flex items-start space-x-6 p-6 bg-white rounded-xl shadow-lg hover-glow group ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'
+                }`}
             >
               <div className="flex-shrink-0">
                 <div className="w-16 h-16 bg-gradient-to-r from-db-blue-600 to-db-green-500 rounded-xl flex items-center justify-center text-2xl group-hover:scale-110 transition-transform duration-300">

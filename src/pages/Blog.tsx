@@ -15,8 +15,8 @@ const Blog = () => {
       id: 1,
       title: 'Database Performance Optimization: 10 Best Practices',
       excerpt: 'Learn the essential techniques to boost your database performance and reduce query execution time.',
-      author: 'John Smith',
-      date: '2024-01-15',
+      author: 'V.M. Sai',
+      date: '2025-06-27',
       category: 'Performance',
       image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=300&fit=crop',
       readTime: '8 min read'
@@ -25,8 +25,8 @@ const Blog = () => {
       id: 2,
       title: 'MongoDB vs PostgreSQL: Choosing the Right Database',
       excerpt: 'A comprehensive comparison of MongoDB and PostgreSQL to help you make the right choice for your project.',
-      author: 'Sarah Johnson',
-      date: '2024-01-12',
+      author: 'V.M. Sai',
+      date: '2025-06-21',
       category: 'Database Comparison',
       image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&h=300&fit=crop',
       readTime: '12 min read'
@@ -35,8 +35,8 @@ const Blog = () => {
       id: 3,
       title: 'Cloud Database Migration: A Step-by-Step Guide',
       excerpt: 'Everything you need to know about migrating your database to the cloud safely and efficiently.',
-      author: 'Mike Chen',
-      date: '2024-01-10',
+      author: 'V.M. Sai',
+      date: '2025-06-17',
       category: 'Cloud Migration',
       image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&h=300&fit=crop',
       readTime: '15 min read'
@@ -45,8 +45,8 @@ const Blog = () => {
       id: 4,
       title: 'Database Security: Protecting Your Data in 2024',
       excerpt: 'Essential security measures to protect your database from cyber threats and data breaches.',
-      author: 'Lisa Rodriguez',
-      date: '2024-01-08',
+      author: 'V.M. Sai',
+      date: '2025-06-11',
       category: 'Security',
       image: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=600&h=300&fit=crop',
       readTime: '10 min read'
@@ -55,8 +55,8 @@ const Blog = () => {
       id: 5,
       title: 'SQL Query Optimization Techniques',
       excerpt: 'Advanced SQL optimization techniques that every database administrator should know.',
-      author: 'John Smith',
-      date: '2024-01-05',
+      author: 'V.M. Sai',
+      date: '2025-06-07',
       category: 'SQL',
       image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&h=300&fit=crop',
       readTime: '7 min read'
@@ -65,8 +65,8 @@ const Blog = () => {
       id: 6,
       title: 'Backup and Recovery Best Practices',
       excerpt: 'Ensure your data is safe with these proven backup and recovery strategies.',
-      author: 'Sarah Johnson',
-      date: '2024-01-03',
+      author: 'V.M. Sai',
+      date: '2025-06-02',
       category: 'Backup',
       image: 'https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=600&h=300&fit=crop',
       readTime: '9 min read'
@@ -78,7 +78,7 @@ const Blog = () => {
 
   const filteredPosts = blogPosts.filter(post => {
     const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         post.excerpt.toLowerCase().includes(searchTerm.toLowerCase());
+      post.excerpt.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesCategory = selectedCategory === 'All' || post.category === selectedCategory;
     return matchesSearch && matchesCategory;
   });
@@ -88,8 +88,8 @@ const Blog = () => {
       {/* Hero Section with Background Image */}
       <section className="py-20 bg-fixmy-orange-80 relative overflow-hidden">
         <div className="absolute inset-0 opacity-10  ">
-          <img 
-            src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=1200&h=600&fit=crop" 
+          <img
+            src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=1200&h=600&fit=crop"
             alt="Database Code Background"
             className="w-full h-full object-cover"
           />
@@ -97,7 +97,7 @@ const Blog = () => {
         <div className="container mx-auto px-6 text-center relative z-10">
           <div className="flex justify-center mb-6">
             <svg className="w-16 h-16 text-fixmy-orange-600" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+              <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z" />
             </svg>
           </div>
           <h1 className="text-5xl md:text-6xl font-bold mb-6 gradient-text animate-fade-in">
@@ -125,15 +125,15 @@ const Blog = () => {
                 />
               </div>
             </div>
-            
+
             <div className="flex flex-wrap gap-3 mb-8">
               {categories.map((category) => (
                 <Button
                   key={category}
                   onClick={() => setSelectedCategory(category)}
                   variant={selectedCategory === category ? "default" : "outline"}
-                  className={selectedCategory === category 
-                    ? "bg-fixmy-orange-600 hover:bg-fixmy-orange-700" 
+                  className={selectedCategory === category
+                    ? "bg-fixmy-orange-600 hover:bg-fixmy-orange-700"
                     : "border-fixmy-orange-200 text-fixmy-orange-600 hover:bg-fixmy-orange-50"
                   }
                 >
@@ -150,7 +150,7 @@ const Blog = () => {
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
             {filteredPosts.map((post, index) => (
-              <Card 
+              <Card
                 key={post.id}
                 className="overflow-hidden hover:shadow-xl transition-all duration-300 animate-fade-in group hover:-translate-y-2 cursor-pointer"
                 style={{ animationDelay: `${index * 0.1}s` }}
@@ -161,8 +161,8 @@ const Blog = () => {
                 aria-label={`Read blog post: ${post.title}`}
               >
                 <div className="relative overflow-hidden">
-                  <img 
-                    src={post.image} 
+                  <img
+                    src={post.image}
                     alt={post.title}
                     className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
                   />
@@ -201,7 +201,7 @@ const Blog = () => {
               </Card>
             ))}
           </div>
-          
+
           {filteredPosts.length === 0 && (
             <div className="text-center py-12">
               <p className="text-gray-500 text-lg">No articles found matching your search.</p>
@@ -213,8 +213,8 @@ const Blog = () => {
       {/* Newsletter CTA */}
       <section className="py-20 bg-gradient-to-r from-fixmy-orange-600 to-fixmy-orange-500 text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
-          <img 
-            src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200&h=400&fit=crop" 
+          <img
+            src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200&h=400&fit=crop"
             alt="Code Background"
             className="w-full h-full object-cover"
           />
@@ -222,7 +222,7 @@ const Blog = () => {
         <div className="container mx-auto px-6 text-center relative z-10">
           <div className="flex justify-center mb-6">
             <svg className="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+              <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
             </svg>
           </div>
           <h2 className="text-4xl font-bold mb-6 animate-fade-in">

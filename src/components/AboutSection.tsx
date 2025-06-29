@@ -1,4 +1,5 @@
 
+import { COMPANY_NAME } from '@/constants';
 import { useEffect, useRef } from 'react';
 
 export const AboutSection = () => {
@@ -34,17 +35,17 @@ export const AboutSection = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div className="about-item animate-on-scroll">
             <h2 className="text-4xl md:text-5xl font-bold mb-8">
-              <span className="gradient-text">About FixMyDB</span>
+              <span className="gradient-text">About {COMPANY_NAME}</span>
             </h2>
             <div className="space-y-6 text-lg text-gray-600 leading-relaxed">
               <p>
-                At FixMyDB, we're passionate about transforming how businesses manage their database infrastructure. 
-                With over a decade of combined experience in database administration and optimization, our team of 
+                At {COMPANY_NAME}, we're passionate about transforming how businesses manage their database infrastructure.
+                With over a decade of combined experience in database administration and optimization, our team of
                 certified experts delivers solutions that scale with your business.
               </p>
               <p>
-                Founded on the principle that every organization deserves reliable, high-performance database 
-                systems, we've helped hundreds of companies across various industries achieve their data goals. 
+                Founded on the principle that every organization deserves reliable, high-performance database
+                systems, we've helped hundreds of companies across various industries achieve their data goals.
                 From startups to enterprise organizations, we provide tailored solutions that drive results.
               </p>
               <p className="font-semibold text-gray-800">
@@ -72,7 +73,7 @@ export const AboutSection = () => {
                 <div className="text-gray-600 font-medium">Client Satisfaction</div>
               </div>
             </div>
-            
+
             <div className="mt-8 p-6 bg-gradient-to-r from-db-blue-600 to-db-green-500 rounded-xl text-white">
               <h3 className="text-xl font-bold mb-4">Our Expertise</h3>
               <div className="grid grid-cols-2 gap-4 text-sm">
