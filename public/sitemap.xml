@@ -3,4 +3,44 @@
   <url>
     <loc>https://www.fixmydb.com/</loc>
   </url>
+  <url>
+    <loc>https://www.fixmydb.com/about</loc>
+  </url>
+  <url>
+    <loc>https://www.fixmydb.com/services</loc>
+  </url>
+  <url>
+    <loc>https://www.fixmydb.com/contact</loc>
+  </url>
+  <url>
+    <loc>https://www.fixmydb.com/blog</loc>
+  </url>
+  <url>
+    <loc>https://www.fixmydb.com/privacy-policy</loc>
+  </url>
+  <url>
+    <loc>https://www.fixmydb.com/terms-of-service</loc>
+  </url>
+  <url>
+    <loc>https://www.fixmydb.com/not-found</loc>
+  </url>
+  <!-- Individual Blog Posts -->
+  <url>
+    <loc>https://www.fixmydb.com/blog/database-performance-optimization-10-best-practices</loc>
+  </url>
+  <url>
+    <loc>https://www.fixmydb.com/blog/mongodb-vs-postgresql-choosing-the-right-database</loc>
+  </url>
+  <url>
+    <loc>https://www.fixmydb.com/blog/cloud-database-migration-step-by-step-guide</loc>
+  </url>
+  <url>
+    <loc>https://www.fixmydb.com/blog/database-security-protecting-your-data-in-2024</loc>
+  </url>
+  <url>
+    <loc>https://www.fixmydb.com/blog/sql-query-optimization-techniques</loc>
+  </url>
+  <url>
+    <loc>https://www.fixmydb.com/blog/backup-and-recovery-best-practices</loc>
+  </url>
 </urlset>
