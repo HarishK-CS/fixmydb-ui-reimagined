@@ -132,6 +132,18 @@ const Home = () => {
         <meta property="og:description" content="Get expert database consulting, optimization, and support from FixMyDB. Free assessment, 99.9% uptime, and zero data loss guarantee." />
         <meta property="og:url" content="https://fixmydb.com/" />
         <meta property="og:type" content="website" />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": "FixMyDB",
+          "url": "https://fixmydb.com",
+          "logo": "https://www.fixmydb.com/logo.svg",
+          "sameAs": [
+            "https://www.linkedin.com/company/fixmydb-solutions",
+          ]
+        })}
+        </script>
+
       </Helmet>
       <main>
         <div className="min-h-screen ">
