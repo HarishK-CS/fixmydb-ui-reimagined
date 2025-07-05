@@ -139,11 +139,10 @@ const Home = () => {
           "url": "https://fixmydb.com",
           "logo": "https://www.fixmydb.com/logo.svg",
           "sameAs": [
-            "https://www.linkedin.com/company/fixmydb-solutions",
+            "https://www.linkedin.com/company/fixmydb-solutions"
           ]
         })}
         </script>
-
       </Helmet>
       <main>
         <div className="min-h-screen ">
